@@ -1,12 +1,8 @@
-import React from "react";
 import Card from "../Components/Card";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { MoveUpRight } from "lucide-react";
 
-interface DashboardProps {
-  role: string | null;
-}
 
 const Dashboard = () => {
   // get the userData

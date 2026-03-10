@@ -4,8 +4,6 @@ import Button from "../Components/Button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signupSchema } from "../schema/registerSchema";
-import apiBaseUrl from "../service/apiBaseUrl";
-import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
@@ -18,7 +16,6 @@ interface SignupFormData {
 }
 
 export default function Register() {
-  const [isLoading, setIsLoading] = useState(false);
   // use Hook Form
   const {
     register,
@@ -89,13 +86,11 @@ export default function Register() {
 
   // Submit Handler
   const onSubmit = async (data: SignupFormData) => {
-    setIsLoading(true);
     await registerMutation.mutateAsync({
       name: data.name,
       email: data.email,
       password: data.password,
     });
-    setIsLoading(false);
   };
 
   return (

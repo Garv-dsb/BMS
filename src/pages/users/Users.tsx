@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import Card from "../../Components/Card";
@@ -29,7 +29,6 @@ const Users = () => {
   const {
     data: users = [],
     isLoading,
-    error,
   } = useQuery({
     queryKey: ["users", "list-users"],
     queryFn: async () => {

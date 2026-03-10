@@ -1,10 +1,9 @@
 import Card from "../../Components/Card";
 import Button from "../../Components/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
 const Profile = () => {
-  const navigate = useNavigate();
 
   // stored user data in local storage
   // const user = JSON.parse(localStorage.getItem("UserData") || "{}");

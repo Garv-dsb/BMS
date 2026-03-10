@@ -9,9 +9,6 @@ interface NavbarProps {
 export default function Navbar({ toggleSidebar }: NavbarProps) {
   const navigate = useNavigate();
   const currentPath = useLocation().pathname;
-  // get the Stored userData
-  const storedData = localStorage.getItem("UserData");
-  const userData = JSON.parse(storedData || "null");
 
   // Get the user
   const { data: user = [] } = useQuery({

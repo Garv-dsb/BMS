@@ -4,11 +4,8 @@ import Button from "../Components/Button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../schema/loginSchema";
-import apiBaseUrl from "../service/apiBaseUrl";
-import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import GoogleAuth from "../Components/GoogleAuth";
 
 // Form Types
 interface LoginFormData {
@@ -17,7 +14,6 @@ interface LoginFormData {
 }
 
 export default function Login() {
-  const [credentials, setCredentials] = useState<LoginFormData | null>(null);
   const navigate = useNavigate();
 
   // use hook Form
@@ -81,7 +77,6 @@ export default function Login() {
 
   // Submit Handler
   const onSubmit = async (formData: LoginFormData) => {
-    setCredentials(formData);
     await loginMutation.mutateAsync(formData);
   };
 

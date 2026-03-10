@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Card from "../../Components/Card";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,12 +16,8 @@ interface EditProfileFormData {
 
 const EditProfile = () => {
   const queryClient = useQueryClient();
-  // get the userData
-  const storedData = localStorage.getItem("UserData");
-  const userData = JSON.parse(storedData || "null");
-  const navigate = useNavigate();
 
-  // Fetach the user data to show into input field
+  const navigate = useNavigate();
 
   // Fetch Users data using React Query
   const { data: user = [], isLoading } = useQuery({

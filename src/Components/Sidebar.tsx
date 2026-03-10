@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import toast from "react-hot-toast";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import apiBaseUrl from "../service/apiBaseUrl";
 
 // Sidebar Props
 interface SidebarProps {

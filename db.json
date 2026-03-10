@@ -1,0 +1,120 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Main Librarian",
+      "email": "librarian@library.com",
+      "password": "lib@123",
+      "role": "librarian"
+    },
+    {
+      "id": "2",
+      "name": "Aman Kumar",
+      "email": "user1@library.com",
+      "password": "USR1001",
+      "role": "user",
+      "isBanned": false,
+      "booksIssued": []
+    },
+    {
+      "id": "3",
+      "name": "Akash Kumar",
+      "email": "user2@library.com",
+      "password": "123456U",
+      "role": "user",
+      "isBanned": false,
+      "booksIssued": []
+    },
+    {
+      "id": "4",
+      "name": "garv",
+      "email": "garv@gmail.com",
+      "password": "USER1003",
+      "role": "user",
+      "isBanned": false,
+      "booksIssued": []
+    },
+    {
+      "id": "ce45",
+      "name": "Garv ",
+      "email": "garv@library.com",
+      "password": "Garv@987",
+      "role": "user",
+      "isBanned": false,
+      "booksIssued": []
+    },
+    {
+      "id": "6a25",
+      "name": "Garv",
+      "email": "garv@library.com",
+      "password": "Garv@9876",
+      "role": "user",
+      "isBanned": false,
+      "booksIssued": []
+    },
+    {
+      "id": "7944",
+      "name": "Garv",
+      "email": "garv@library.com",
+      "password": "Garv@9876",
+      "role": "user",
+      "isBanned": false,
+      "booksIssued": []
+    },
+    {
+      "id": "6b5a",
+      "name": "123456EDa",
+      "email": "garv@gmail.com",
+      "password": "123456EDa",
+      "role": "user",
+      "isBanned": false,
+      "booksIssued": []
+    },
+    {
+      "id": "7da3",
+      "name": "123456EDa",
+      "email": "garv@gmail.com",
+      "password": "123456EDa",
+      "role": "user",
+      "isBanned": false,
+      "booksIssued": []
+    }
+  ],
+  "books": [
+    {
+      "id": "1",
+      "title": "Clean Code",
+      "author": "Robert Martin",
+      "category": "Programming",
+      "quantity": 10,
+      "available": 10
+    },
+    {
+      "id": "2",
+      "title": "JavaScript The Good Parts",
+      "author": "Douglas Crockford",
+      "category": "Programming",
+      "quantity": 7,
+      "available": 7
+    },
+    {
+      "id": "3",
+      "title": "Operating System Concepts",
+      "author": "Silberschatz",
+      "category": "Computer Science",
+      "quantity": 5,
+      "available": 5
+    }
+  ],
+  "transactions": [
+    {
+      "id": "1",
+      "userId": 1,
+      "bookId": 1,
+      "issueDate": "2026-03-01",
+      "returnDate": null,
+      "status": "issued"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

@@ -49,7 +49,6 @@ export default function Login() {
       return result;
     },
     onSuccess: (data) => {
-      console.log("Login successful:", data);
       if (data.token) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("UserData", JSON.stringify(data.user));
@@ -60,6 +59,14 @@ export default function Login() {
           },
         });
         navigate("/");
+      }
+      if (data.message) {
+        toast.error(data?.message, {
+          style: {
+            background: "#333",
+            color: "#fff",
+          },
+        });
       }
     },
     onError: (error: any) => {

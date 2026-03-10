@@ -1,36 +1,35 @@
 import Card from "../../Components/Card";
 import Button from "../../Components/Button";
 import { Link, useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 const Profile = () => {
   const navigate = useNavigate();
 
   // stored user data in local storage
-  const user = JSON.parse(localStorage.getItem("UserData") || "{}");
+  // const user = JSON.parse(localStorage.getItem("UserData") || "{}");
 
-  const hadnleBack = () => {
-    navigate("/");
-  };
-
-  // const {
-  //   data: user = [],
-  //   isLoading,
-  //   isError,
-  // } = useQuery({
-  //   queryKey: ["user"],
-  //   queryFn: async () => {
-  //     const response = await apiBaseUrl.get("/auth/get-session");
-  //     return response.data.user;
-  //   },
-  // });
-
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
-
-  // if (isError) {
-  //   return <div>Error fetching user data.</div>;
-  // }
+  // Fetch Users data using React Query
+  const { data: user = [], isLoading } = useQuery({
+    queryKey: ["user", "list-users"],
+    queryFn: async () => {
+      return await fetch("/api/auth/get-session", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          return data.user;
+        })
+        .catch((err) => {
+          console.error("Error fetching users:", err);
+          return [];
+        });
+    },
+  });
 
   return (
     <div className="w-full space-y-6">
@@ -45,45 +44,46 @@ const Profile = () => {
       </div>
 
       {/* Profile Details */}
-      <Card className="w-fit mx-auto border border-white/10">
+      <Card className="w-[50%] mx-auto border border-white/10">
         <div className="">
-          <div className="p-6 space-y-4">
-            {/* User image  */}
-            <div className="flex items-center gap-4">
-              <img
-                src={
-                  user?.image ||
-                  "https://cdn-icons-png.flaticon.com/512/219/219970.png"
-                }
-                alt="User Avatar"
-                className="w-16 h-16 rounded-full"
-              />
+          {isLoading ? (
+            <div className="flex items-center justify-center h-48">
+              <p className="text-gray-400">Loading user data...</p>
             </div>
+          ) : (
+            <div className="p-6 space-y-4">
+              {/* User image  */}
+              <div className="flex justify-center items-center gap-4">
+                <img
+                  src={
+                    user?.image ||
+                    "https://cdn-icons-png.flaticon.com/512/219/219970.png"
+                  }
+                  alt="User Avatar"
+                  className="w-16 h-16 rounded-full object-cover"
+                />
+              </div>
 
-            <div>
-              <h2 className="text-xl font-semibold text-gray-300">Name</h2>
-              <p className="text-gray-400">{user?.name}</p>
-            </div>
-            <div>
-              <h2 className="text-xl font-semibold text-gray-300">Email</h2>
-              <p className="text-gray-400">{user?.email}</p>
-            </div>
-            <div>
-              <h2 className="text-xl font-semibold text-gray-300">Role</h2>
-              <p className="text-gray-400">{user?.role}</p>
-            </div>
+              <div>
+                <h2 className="text-xl font-semibold text-gray-300">Name</h2>
+                <p className="text-gray-400">{user?.name}</p>
+              </div>
+              <div>
+                <h2 className="text-xl font-semibold text-gray-300">Email</h2>
+                <p className="text-gray-400">{user?.email}</p>
+              </div>
+              <div>
+                <h2 className="text-xl font-semibold text-gray-300">Role</h2>
+                <p className="text-gray-400">{user?.role}</p>
+              </div>
 
-            <div className="flex gap-3 w-full">
-              <Link to="/profile/edit">
-                <div className="w-20 md:w-32">
+              <div className="text-center gap-3 w-full">
+                <Link to="/profile/edit">
                   <Button text="Edit Profile" />
-                </div>
-              </Link>
-              <div className="w-20 md:w-32">
-                <Button text="Go back" onClick={hadnleBack} />
+                </Link>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </Card>
     </div>

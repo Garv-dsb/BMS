@@ -30,31 +30,22 @@ const Add = () => {
     resolver: zodResolver(addUserSchema),
   });
 
-  // Handle Go Back
-  const handleGoBack = () => {
-    navigate("/users");
-  };
-
   // Handle form submission
   const onSubmit = async (data: AddUserFormData) => {
     setIsLoading(true);
-    await fetch(
-      `https://book-management-delta-five.vercel.app/auth/admin/create-user`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          email: data.email,
-          password: data.password,
-          name: data.name,
-          role: "user", // by default, new users will have "user" role.
-        }),
+    await fetch(`/api/auth/admin/create-user`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    )
+      credentials: "include",
+      body: JSON.stringify({
+        email: data.email,
+        password: data.password,
+        name: data.name,
+        role: "user", // by default, new users will have "user" role.
+      }),
+    })
       .then((res) => res.json())
       .then((data) => {
         setIsLoading(false);
@@ -133,12 +124,6 @@ const Add = () => {
             <div className="flex justify-end gap-2">
               <div className="w-full">
                 <Button text="Add User" loading={isLoading} />
-              </div>
-              <div
-                onClick={handleGoBack}
-                className="transition-colors flex justify-center items-center font-semibold bg-[#8c52ef]/30 text-white rounded-md hover:bg-[#8c52ef]/50 w-full hover:cursor-pointer "
-              >
-                Go Back
               </div>
             </div>
           </form>

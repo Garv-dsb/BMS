@@ -4,9 +4,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { editUserProfileSchema } from "../../schema/editUserProfileSchema";
 import InputField from "../../Components/InputField";
-import Button from "../../Components/Button";
 import { useNavigate } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 // types of edit profile form
@@ -17,30 +16,37 @@ interface EditProfileFormData {
 }
 
 const EditProfile = () => {
+  const queryClient = useQueryClient();
   // get the userData
   const storedData = localStorage.getItem("UserData");
   const userData = JSON.parse(storedData || "null");
   const navigate = useNavigate();
 
-  // set the image url
-  const [imageUrl, setImageUrl] = useState<string>(
-    "https://www.citypng.com/public/uploads/preview/download-black-male-user-profile-icon-png-701751695035033bwdeymrpov.png?v=2026020321",
-  );
+  // Fetach the user data to show into input field
 
-  // evenet handler for file input change
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+  // Fetch Users data using React Query
+  const { data: user = [], isLoading } = useQuery({
+    queryKey: ["user", "list-users"],
+    queryFn: async () => {
+      return await fetch("/api/auth/get-session", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          return data.user;
+        })
+        .catch((err) => {
+          console.error("Error fetching users:", err);
+          return [];
+        });
+    },
+  });
 
-    if (file) {
-      const temporaryUrl = URL.createObjectURL(file);
-      setImageUrl(temporaryUrl);
-    }
-  };
-
-  // handle back button
-  const hadnleBack = () => {
-    navigate("/profile");
-  };
+  console.log("user from edit", user);
 
   // user form
   const {
@@ -55,8 +61,7 @@ const EditProfile = () => {
   // mutute the user data and update the local storage
   const handleProfileMututate = useMutation({
     mutationFn: async (data: EditProfileFormData) => {
-      const url =
-        "https://book-management-delta-five.vercel.app/auth/update-user";
+      const url = "/api/auth/update-user";
       const token = localStorage.getItem("token");
 
       // make the API call to delete the user
@@ -69,7 +74,7 @@ const EditProfile = () => {
         credentials: "include",
         body: JSON.stringify({
           name: data.name,
-          image: imageUrl === userData?.image ? null : imageUrl,
+          image: data.image || null,
         }),
       });
       return response.json();
@@ -77,6 +82,7 @@ const EditProfile = () => {
 
     onSuccess: (data) => {
       if (data.status === true) {
+        queryClient.invalidateQueries({ queryKey: ["user"] });
         toast.success("Profile updated successfully", {
           style: {
             background: "#333",
@@ -90,8 +96,8 @@ const EditProfile = () => {
 
   const onSubmit = () => {
     handleProfileMututate.mutate({
-      name: watch("name") || userData?.name || "",
-      image: imageUrl,
+      name: watch("name") || user?.name || "",
+      image: watch("image") || user?.image || "",
     });
   };
 
@@ -109,61 +115,53 @@ const EditProfile = () => {
         </div>
 
         {/* Form */}
-        <Card className="w-fit mx-auto border border-white/10">
-          {/* Upload Image  */}
+        <Card className="w-[50%] mx-auto border border-white/10">
           <div className="p-6 space-y-4">
-            {/* Image preview and upload  */}
-            <div className="flex justify-center items-center flex-col gap-4">
-              <img
-                src={userData?.image || imageUrl}
-                alt="Profile"
-                className="w-32 h-32 rounded-full object-cover border-4 border-white/20"
-              />
-
-              <div className="w-50">
-                <input
-                  className="flex items-center  text-center bg-[#8c52ef]/30 transition-all duration-200 text-white px-4 py-2 rounded-md shadow-md hover:shadow-[#9c52ef]/20 w-[100%] hover:cursor-pointer"
-                  type="file"
-                  onChange={handleFileChange}
-                />
-              </div>
-            </div>
             {/* form inputs  */}
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="flex flex-col justify-center items-center"
-            >
-              <div className="w-fit space-y-4">
-                <InputField
-                  label="Name"
-                  type="text"
-                  placeholder="Enter Your name"
-                  register={register}
-                  name="name"
-                  errors={errors.name}
-                  className="text-sm py-2"
-                  defaultValue={userData?.name || ""}
-                />
+            {isLoading ? (
+              <div className="flex items-center justify-center h-48">
+                <p className="text-gray-400">Loading user data...</p>
               </div>
+            ) : (
+              <form onSubmit={handleSubmit(onSubmit)} className="">
+                <div className="space-y-4">
+                  <InputField
+                    label="Image"
+                    type="text"
+                    placeholder="Enter Image Url"
+                    register={register}
+                    name="image"
+                    errors={errors.image}
+                    className="text-sm py-2"
+                    defaultValue={user?.image}
+                  />
+                </div>
 
-              <div className="flex justify-center items-center gap-3 w-full">
-                <div className="w-20 md:w-32">
-                  <button
-                    type="submit"
-                    className="flex items-center justify-center text-center bg-[#8c52ef]/30 transition-all duration-200 text-white px-4 py-[5px] rounded-md shadow-md hover:shadow-[#9c52ef]/20 w-[100%] hover:cursor-pointer"
-                  >
-                    Save
-                  </button>
+                <div className="space-y-4">
+                  <InputField
+                    label="Name"
+                    type="text"
+                    placeholder="Enter Your name"
+                    register={register}
+                    name="name"
+                    errors={errors.name}
+                    className="text-sm py-2"
+                    defaultValue={user?.name}
+                  />
                 </div>
-                {/* GO back Button  */}
-                <div
-                  onClick={hadnleBack}
-                  className="w-20 md:w-32 px-4 py-[5px] transition-colors flex justify-center items-center  bg-[#8c52ef]/30 text-white rounded-md hover:bg-[#8c52ef]/50 w-full hover:cursor-pointer "
-                >
-                  Go Back
+
+                <div className="gap-3 w-full">
+                  <div className="">
+                    <button
+                      type="submit"
+                      className={`flex items-center justify-center text-center bg-[#8c52ef]/30 transition-all duration-200 text-white px-4 py-[5px] rounded-md shadow-md hover:shadow-[#9c52ef]/20 w-[100%]  ${handleProfileMututate.isPending ? "cursor-not-allowed bg-[#8c52ef]/10 opacity-50" : "hover:cursor-pointer"}`}
+                    >
+                      {handleProfileMututate.isPending ? "Saving..." : "Save"}
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </form>
+              </form>
+            )}
           </div>
         </Card>
       </div>

@@ -10,6 +10,7 @@ import {
   SquareLibrary,
   Settings2,
   User,
+  BookPlus,
 } from "lucide-react";
 import toast from "react-hot-toast";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -25,27 +26,34 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
   const [openMenu, setOpenMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
+  // Get the user
+  const { data: user = [] } = useQuery({
+    queryKey: ["user", "get-session"],
+    queryFn: async () => {
+      return await fetch("/api/auth/get-session", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          return data.user;
+        })
+        .catch((err) => {
+          console.error("Error fetching users:", err);
+          return []; // if there is an error , return the nothing to avoid breaking the UI
+        });
+    },
+  });
+
+  console.log("user", user);
+
   // navigater
   const navigate = useNavigate();
 
   // get the userData
   const storedData = localStorage.getItem("UserData");
   const userData = JSON.parse(storedData || "null");
-
-  // const { data: user = [] } = useQuery({
-  //   queryKey: ["user"],
-  //   queryFn: async () => {
-  //     const token = localStorage.getItem("token");
-  //     const response = await apiBaseUrl.get("/auth/get-session", {
-  //       withCredentials: true,
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-
-  //     return response.data.user;
-  //   },
-  // });
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -71,8 +79,13 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
       links: [
         {
           to: "books",
-          label: "Book",
+          label: "Books",
           icon: <LibraryBig size={16} />,
+        },
+        {
+          to: "assignbook",
+          label: "Assign Books",
+          icon: <BookPlus size={16} />,
         },
       ],
     },
@@ -111,7 +124,7 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
   //Handle mutuation for logout
   const logOutMutation = useMutation({
     mutationFn: async () => {
-      const url = "https://book-management-delta-five.vercel.app/auth/sign-out";
+      const url = "/api/auth/sign-out";
       const token = localStorage.getItem("token");
 
       // make the API call to delete the user
@@ -233,13 +246,16 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
           >
             <div className="flex items-center gap-2">
               <img
-                src={"https://cdn-icons-png.flaticon.com/512/219/219970.png"}
+                src={
+                  user?.image ||
+                  "https://cdn-icons-png.flaticon.com/512/219/219970.png"
+                }
                 alt="avatar"
-                className="w-7 h-7 rounded-full border border-[#8c52ef]/40"
+                className="w-7 h-7 rounded-full border border-[#8c52ef]/40 object-cover"
               />
               <div>
-                <p className="text-[13px] font-semibold">{userData?.name}</p>
-                <p className="text-[11px] text-gray-400">{userData?.email}</p>
+                <p className="text-[13px] font-semibold">{user?.name}</p>
+                <p className="text-[11px] text-gray-400">{user?.email}</p>
               </div>
             </div>
             <MoreHorizontal size={18} />

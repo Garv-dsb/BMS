@@ -20,10 +20,12 @@ const Dashboard = () => {
     queryKey: ["users"],
     queryFn: async () => {
       return fetch(
-        "https://book-management-delta-five.vercel.app/auth/admin/list-users?filterField=role&filterValue=user",
+        "/api/auth/admin/list-users?filterField=role&filterValue=user",
         {
           method: "GET",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+          },
           credentials: "include",
         },
       )

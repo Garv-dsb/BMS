@@ -18,6 +18,7 @@ import Profile from "./pages/users/Profile";
 import Add from "./pages/users/Add";
 import EditProfile from "./pages/users/EditProfile";
 import Edit from "./pages/users/Edit";
+import AssignBook from "./pages/books/AssignBook";
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
             {/* Only admin can access these routes  */}
             <Route element={<UserUnauthorizedRoute />}>
               <Route path="books" element={<Books />} />
+              <Route path="assignbook" element={<AssignBook />} />
               <Route path="users" element={<Users />} />
               <Route path="user/:id" element={<View />} />
               <Route path="user/add" element={<Add />} />

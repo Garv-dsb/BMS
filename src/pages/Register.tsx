@@ -53,7 +53,8 @@ export default function Register() {
         body: JSON.stringify({ name, email, password }),
         headers: {
           "Content-Type": "application/json",
-      }});
+        },
+      });
       const result = await response.json();
       return result;
     },
@@ -66,6 +67,14 @@ export default function Register() {
           },
         });
         navigate("/login");
+      }
+      if (data.message) {
+        toast.error(data?.message, {
+          style: {
+            background: "#333",
+            color: "#fff",
+          },
+        });
       }
     },
     onError: (error: any) => {

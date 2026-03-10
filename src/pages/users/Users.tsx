@@ -37,10 +37,7 @@ const Users = () => {
         "/api/auth/admin/list-users?filterField=role&filterValue=user",
         {
           method: "GET",
-          headers: { "Content-Type": "application/json",
-
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-           },
+          headers: { "Content-Type": "application/json" },
           credentials: "include",
         },
       )
@@ -76,15 +73,14 @@ const Users = () => {
       banned: boolean;
     }) => {
       const url = banned
-        ? "https://book-management-delta-five.vercel.app/auth/admin/unban-user"
-        : "https://book-management-delta-five.vercel.app/auth/admin/ban-user";
+        ? "/api/auth/admin/unban-user"
+        : "/api/auth/admin/ban-user";
 
       // make the API call to ban or unban the user
       const response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         credentials: "include",
         body: JSON.stringify({ userId }),
@@ -126,8 +122,7 @@ const Users = () => {
   // use a mututation for the handle user Delete or remove
   const userDelete = useMutation({
     mutationFn: async (userId: number) => {
-      const url =
-        "https://book-management-delta-five.vercel.app/auth/admin/remove-user";
+      const url = "/api/auth/admin/remove-user";
       const token = localStorage.getItem("token");
 
       // make the API call to delete the user
@@ -157,12 +152,11 @@ const Users = () => {
   // Search mutation to handle searching users by email
   const searchMutuation = useMutation({
     mutationFn: async (searchTerm: string) => {
-      const url = `https://book-management-delta-five.vercel.app/auth/admin/list-users?filterField=role&filterValue=user&searchField=email&searchValue=${searchTerm.toLowerCase()}`;
+      const url = `/api/auth/admin/list-users?filterField=role&filterValue=user&searchField=email&searchValue=${searchTerm.toLowerCase()}`;
       const response = await fetch(url, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         credentials: "include",
       });
@@ -274,7 +268,7 @@ const Users = () => {
                             "https://cdn-icons-png.flaticon.com/512/219/219970.png"
                           }
                           alt="avatar"
-                          className="w-10 h-10 rounded-full border border-[#8c52ef]/40"
+                          className="w-10 h-10 rounded-full border border-[#8c52ef]/40 object-cover"
                         />
                       </td>
                       <td className="p-3 sm:p-4 text-white font-medium">

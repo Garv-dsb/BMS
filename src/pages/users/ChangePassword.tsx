@@ -28,21 +28,17 @@ const ChangePassword = () => {
   // Password Submit Handler
   const onSubmit = async (data: ChangePasswordFormData) => {
     setLoading(true);
-    await fetch(
-      `https://book-management-delta-five.vercel.app/auth/change-password`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          currentPassword: data.currentPassword,
-          newPassword: data.newPassword,
-        }),
+    await fetch(`/api/auth/change-password`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    )
+      credentials: "include",
+      body: JSON.stringify({
+        currentPassword: data.currentPassword,
+        newPassword: data.newPassword,
+      }),
+    })
       .then((res) => res.json())
       .then((data) => {
         setLoading(false);
@@ -62,44 +58,58 @@ const ChangePassword = () => {
   };
 
   return (
-    <div className="w-full h-full flex items-center justify-center">
-      <Card className="w-full md:w-1/2 lg:[40%] p-6 shadow-lg">
-        <form className="space-y-2" onSubmit={handleSubmit(onSubmit)}>
-          {/* Current Password Input  */}
-          <InputField
-            label="Current Password"
-            name="currentPassword"
-            type="password"
-            placeholder="Enter your current password"
-            register={register}
-            errors={errors.currentPassword}
-            className="text-sm py-2"
-          />
+    <div className="w-full h-full">
+      <div>
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+          <div>
+            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+              Change Password
+            </h1>
+            <p className="text-gray-400">set the new password</p>
+          </div>
+        </div>
 
-          {/* password Input  */}
-          <InputField
-            label="New Password"
-            name="newPassword"
-            type="password"
-            placeholder="Enter your New Password"
-            register={register}
-            errors={errors.newPassword}
-            className="text-sm py-2"
-          />
+        <div className="flex justify-center">
+          <Card className="w-full md:w-1/2 lg:[40%] p-6 shadow-lg ">
+            <form className="space-y-2" onSubmit={handleSubmit(onSubmit)}>
+              {/* Current Password Input  */}
+              <InputField
+                label="Current Password"
+                name="currentPassword"
+                type="password"
+                placeholder="Enter your current password"
+                register={register}
+                errors={errors.currentPassword}
+                className="text-sm py-2"
+              />
 
-          {/* password Input  */}
-          <InputField
-            label="Confirm New Password"
-            name="confirmPassword"
-            type="password"
-            placeholder="Enter your Confirm New Password"
-            register={register}
-            errors={errors.confirmPassword}
-            className="text-sm py-2"
-          />
-          <Button text={"Change Password"} loading={loading} />
-        </form>
-      </Card>
+              {/* password Input  */}
+              <InputField
+                label="New Password"
+                name="newPassword"
+                type="password"
+                placeholder="Enter your New Password"
+                register={register}
+                errors={errors.newPassword}
+                className="text-sm py-2"
+              />
+
+              {/* password Input  */}
+              <InputField
+                label="Confirm New Password"
+                name="confirmPassword"
+                type="password"
+                placeholder="Enter your Confirm New Password"
+                register={register}
+                errors={errors.confirmPassword}
+                className="text-sm py-2"
+              />
+              <Button text={"Change Password"} loading={loading} />
+            </form>
+          </Card>
+        </div>
+      </div>
     </div>
   );
 };

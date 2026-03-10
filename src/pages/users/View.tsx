@@ -1,24 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Card from "../../Components/Card";
-import Button from "../../Components/Button";
 
 const View = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
 
   // Find the user with the matching ID
   const { data: user = [], isLoading } = useQuery({
     queryKey: ["user", id],
     queryFn: async () => {
-      return fetch(
-        `https://book-management-delta-five.vercel.app/auth/admin/get-user?id=${id}`,
-        {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
+      return fetch(`/api/auth/admin/get-user?id=${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
         },
-      )
+        credentials: "include",
+      })
         .then((res) => res.json())
         .then((data) => {
           return data;
@@ -29,10 +26,6 @@ const View = () => {
         });
     },
   });
-
-  const hadnleBack = () => {
-    navigate("/users");
-  };
 
   return (
     <div className="space-y-6">
@@ -73,12 +66,15 @@ const View = () => {
               <strong>Name:</strong> {user.name} <br />
               <strong>Email:</strong> {user.email} <br />
               <strong>Role:</strong> {user.role} <br />
-              <strong>Status:</strong> {user.banned ? "Banned" : "Active"}
+              <div className="space-x-2">
+                Banned Status:
+              <span
+                className={`${user.banned ? "bg-red-300/10 text-red-300 rounded-sm" : "rounded-sm bg-[#ABE7B2]/30 text-[#ABE7B2]"}`}
+              >
+                 {user.banned ? "Banned" : "Active"}{" "}
+              </span>
+              </div>
             </h3>
-
-            <div className="w-fit">
-              <Button text="Go Back" onClick={hadnleBack} />
-            </div>
           </div>
         )}
       </Card>

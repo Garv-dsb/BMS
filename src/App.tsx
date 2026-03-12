@@ -18,7 +18,11 @@ import Profile from "./pages/users/Profile";
 import Add from "./pages/users/Add";
 import EditProfile from "./pages/users/EditProfile";
 import Edit from "./pages/users/Edit";
+import BookAdd from "./pages/books/BookAdd";
 import AssignBook from "./pages/books/AssignBook";
+import ViewBook from "./pages/books/ViewBook";
+import BooksEdit from "./pages/books/BooksEdit";
+import AssignedBooks from "./pages/books/AssignedBooks";
 
 const App = () => {
   return (
@@ -39,10 +43,14 @@ const App = () => {
             {/* Only admin can access these routes  */}
             <Route element={<UserUnauthorizedRoute />}>
               <Route path="books" element={<Books />} />
-              <Route path="assignbook" element={<AssignBook />} />
+              <Route path="books/:id" element={<ViewBook />} />
+              <Route path="books/add" element={<BookAdd />} />
+              <Route path="books/edit/:id" element={<BooksEdit />} />
+              <Route path="assignbook" element={<AssignedBooks />} />
+              <Route path="assignbook/add" element={<AssignBook />} />
               <Route path="users" element={<Users />} />
               <Route path="user/:id" element={<View />} />
-              <Route path="user/add" element={<Add />} />
+              <Route path="users/add" element={<Add />} />
               <Route path="user/edit/:id" element={<Edit />} />
             </Route>
 

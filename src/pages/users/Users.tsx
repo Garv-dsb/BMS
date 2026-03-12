@@ -1,12 +1,13 @@
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import Card from "../../Components/Card";
 import Pagination from "../../Components/Pagination";
-import { Edit2, Ellipsis, Eye, Plus, Trash2 } from "lucide-react";
+import { Edit2, Ellipsis, Eye, Trash2, UserPlus } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface User {
+  assignedBooksCount: number;
   id: number;
   name: string;
   email: string;
@@ -17,6 +18,7 @@ interface User {
 
 const Users = () => {
   const [openMenu, setOpenMenu] = useState<number | null>(null);
+  const [deleteMenu, setDeleteMenu] = useState<number | null>(null);
   const queryClient = useQueryClient();
   // track which user is currently in-flight for ban/unban
   const [mutatingUserId, setMutatingUserId] = useState<number | null>(null);
@@ -25,15 +27,12 @@ const Users = () => {
   const itemsPerPage = 5;
   const [totalItems, setTotalItems] = useState(0);
 
-  // Fetch Users data using React Query
-  const {
-    data: users = [],
-    isLoading,
-  } = useQuery({
-    queryKey: ["users", "list-users"],
+  // Fetch users data using React Query
+  const { data: users = [], isLoading } = useQuery({
+    queryKey: ["users", "users-with-counts"],
     queryFn: async () => {
       return fetch(
-        "/api/auth/admin/list-users?filterField=role&filterValue=user",
+        "/api/books/users-with-counts?filterField=role&filterValue=user",
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
@@ -42,8 +41,8 @@ const Users = () => {
       )
         .then((res) => res.json())
         .then((data) => {
-          setTotalItems(data.total); // set total items for pagination
-          return data.users;
+          setTotalItems(data.meta.total);
+          return data;
         })
         .catch((err) => {
           console.error("Error fetching users:", err);
@@ -55,7 +54,10 @@ const Users = () => {
   // Pagination logic
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedUsers = users.slice(startIndex, startIndex + itemsPerPage);
+  const paginatedUsers = users?.data?.slice(
+    startIndex,
+    startIndex + itemsPerPage,
+  );
 
   // Reset to page 1 when users data changes
   useEffect(() => {
@@ -92,8 +94,14 @@ const Users = () => {
       setMutatingUserId(userId);
     },
     // on success, invalidate the users query to refetch the updated list and show a toast
-    onSuccess: (_data, variables) => {
-      queryClient.invalidateQueries({ queryKey: ["users", "list-users"] });
+    onSuccess: (data, variables) => {
+      console.log(data);
+      queryClient.invalidateQueries(
+        {
+          queryKey: ["users", "users-with-counts"],
+        },
+        data.user,
+      );
       // show a toast depending on the action
       toast.success(
         variables.banned
@@ -138,20 +146,23 @@ const Users = () => {
     },
     // success handler to invalidate the users query and show a toast
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["users", "list-users"] });
+      queryClient.invalidateQueries({
+        queryKey: ["users", "users-with-counts"],
+      });
       toast.success("User deleted successfully", {
         style: {
           background: "#333",
           color: "#fff",
         },
       });
+      setDeleteMenu(null);
     },
   });
 
   // Search mutation to handle searching users by email
   const searchMutuation = useMutation({
     mutationFn: async (searchTerm: string) => {
-      const url = `/api/auth/admin/list-users?filterField=role&filterValue=user&searchField=email&searchValue=${searchTerm.toLowerCase()}`;
+      const url = `/api/books/users-with-counts?filterField=role&filterValue=user&searchField=email&searchValue=${searchTerm.toLowerCase()}`;
       const response = await fetch(url, {
         method: "GET",
         headers: {
@@ -163,7 +174,7 @@ const Users = () => {
     },
     onSuccess: (data) => {
       setTotalItems(data.total);
-      queryClient.setQueryData(["users", "list-users"], data.users);
+      queryClient.setQueryData(["users", "users-with-counts"], data);
     },
     onError: (error) => {
       console.error("Error searching users:", error);
@@ -176,9 +187,7 @@ const Users = () => {
   };
 
   const handleDeleteUser = (userId: number) => {
-    if (window.confirm("Are you sure you want to delete this user?")) {
-      userDelete.mutate(userId);
-    }
+    userDelete.mutate(userId);
   };
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -199,9 +208,9 @@ const Users = () => {
           </div>
 
           {/* Create Button  */}
-          <Link to="/user/add">
-            <button className="flex gap-2 px-4 py-2 bg-white text-black rounded-md hover:cursor-pointer transition-colors">
-              Create <Plus size={24} />
+          <Link to="/users/add">
+            <button className="flex gap-2 px-4 bg-[#2D2D2D] py-2  text-white rounded-md hover:cursor-pointer transition-colors">
+              Create <UserPlus size={20} />
             </button>
           </Link>
         </div>
@@ -227,7 +236,7 @@ const Users = () => {
               <p className="text-gray-400">No Users Found...</p>
             </div>
           ) : (
-            <div className="overflow-x-hidden">
+            <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-white/10">
@@ -279,7 +288,11 @@ const Users = () => {
                       <td className="p-3 sm:p-4 text-gray-300 hidden md:table-cell">
                         {user.role}
                       </td>
-                      <td className="p-3 sm:p-4 text-gray-300 hidden lg:table-cell"></td>
+                      <td
+                        className={`p-3 sm:p-4 text-gray-300 hidden lg:table-cell `}
+                      >
+                        {user.assignedBooksCount}
+                      </td>
                       <td className="p-3 sm:p-4 text-gray-300 hidden xl:table-cell">
                         <span
                           className={`${user.banned ? "bg-red-300/10 text-red-300 " : "bg-[#ABE7B2]/30 text-[#ABE7B2]"}  px-3 py-1 rounded-md text-xs font-medium`}
@@ -325,7 +338,7 @@ const Users = () => {
 
                             {/* Dropdown Menu */}
                             {openMenu === user.id && (
-                              <div className="absolute right-0 mt-2 w-48 bg-black border border-white/10 rounded-md shadow-lg z-10">
+                              <div className="absolute right-0 top-[-30px] w-48 bg-black border border-white/10 rounded-md shadow-lg z-10">
                                 <button
                                   className={`w-full hover:cursor-pointer text-left px-4 py-2 text-sm text-gray-300 transition-colors rounded-md flex items-center gap-2 ${
                                     mutatingUserId === user.id
@@ -351,7 +364,11 @@ const Users = () => {
                           <button
                             className="text-red-500 hover:text-red-400 transition-colors p-2 hover:bg-white/5 rounded-md hover:cursor-pointer"
                             title="Delete"
-                            onClick={() => handleDeleteUser(user.id)}
+                            onClick={() => {
+                              setDeleteMenu(
+                                deleteMenu === user.id ? null : user.id,
+                              );
+                            }}
                           >
                             <Trash2 size={18} />
                           </button>
@@ -369,6 +386,43 @@ const Users = () => {
             </div>
           )}
         </Card>
+
+        {/* Delete Confirmation Modal */}
+        <div
+          className={`fixed inset-0 bg-black/50 flex items-center justify-center backdrop-blur-xs z-20 transition-opacity ${
+            deleteMenu
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
+          }`}
+        >
+          <div className="bg-[#1A1A1A] p-6 rounded-md w-full max-w-sm">
+            <h2 className="text-lg font-semibold text-white mb-4">
+              Confirm Deletion
+            </h2>
+            <p className="text-gray-400 mb-6">
+              Are you sure you want to delete this user? This action cannot be
+              undone.
+            </p>
+            <div className="flex justify-end gap-4">
+              <button
+                className="px-4 py-2 bg-gray-700 text-white rounded-md hover:bg-gray-600 transition-colors hover:cursor-pointer"
+                onClick={() => setDeleteMenu(null)}
+              >
+                Cancel
+              </button>
+              <button
+                className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-400 transition-colors hover:cursor-pointer"
+                onClick={() => {
+                  if (deleteMenu) {
+                    handleDeleteUser(deleteMenu);
+                  }
+                }}
+              >
+                {userDelete.isPending ? "Deleting..." : "Delete"}
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

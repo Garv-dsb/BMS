@@ -15,6 +15,7 @@ interface InputProps<T extends FieldValues> {
   register?: UseFormRegister<T>;
   errors?: any;
   defaultValue?: string;
+  isDisabled?: boolean;
 }
 
 // Component with passign props
@@ -29,6 +30,7 @@ const InputField = <T extends FieldValues>({
   errors,
   value = "",
   defaultValue = "",
+  isDisabled,
   ...props
 }: InputProps<T>) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -58,6 +60,7 @@ const InputField = <T extends FieldValues>({
           required={required}
           placeholder={placeholder}
           defaultValue={value || defaultValue}
+          disabled={isDisabled}
           className={`
             w-full
             bg-[#111] 
@@ -74,6 +77,7 @@ const InputField = <T extends FieldValues>({
             focus:border-[#8c52ef]/80
             focus:ring-4
             focus:ring-[#8c52ef]/20
+            ${isDisabled ? "cursor-not-allowed opacity-50" : "hover:border-[#8c52ef]/80"}
             ${className}
           `}
           {...props}

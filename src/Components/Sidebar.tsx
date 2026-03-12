@@ -45,7 +45,6 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
     },
   });
 
-  console.log("user", user);
 
   // navigater
   const navigate = useNavigate();

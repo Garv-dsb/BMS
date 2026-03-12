@@ -1,0 +1,5 @@
+# 1. Proxy API requests to Vercel
+/api/*  https://book-management-delta-five.vercel.app  200!
+
+# 2. Redirect all other paths to index.html for React Router
+/*  /index.html  200

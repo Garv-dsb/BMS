@@ -2,21 +2,22 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import InputField from "../../Components/InputField";
 import Button from "../../Components/Button";
-import { addUserSchema } from "../../schema/addUserSchema";
 import { useState } from "react";
 import Card from "../../Components/Card";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { addBookSchema } from "../../schema/addBookSchema";
 
-// types for user add form
-interface AddUserFormData {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
+// types for book add form
+interface AddBookFormData {
+  title: string;
+  description?: string;
+  author: string;
+  quantity: unknown;
+  imageUrl?: string;
 }
 
-const Add = () => {
+const BookAdd = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -26,40 +27,41 @@ const Add = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<AddUserFormData>({
-    resolver: zodResolver(addUserSchema),
+  } = useForm<AddBookFormData>({
+    resolver: zodResolver(addBookSchema),
   });
 
   // Handle form submission
-  const onSubmit = async (data: AddUserFormData) => {
+  const onSubmit = async (data: AddBookFormData) => {
     setIsLoading(true);
-    await fetch(`/api/auth/admin/create-user`, {
+    await fetch(`/api/books`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       credentials: "include",
       body: JSON.stringify({
-        email: data.email,
-        password: data.password,
-        name: data.name,
-        role: "user", // by default, new users will have "user" role.
+        title: data.title,
+        description: data.description,
+        author: data.author,
+        quantity: parseInt(String(data.quantity), 10),
+        imageUrl: data.imageUrl,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         setIsLoading(false);
-        if (data?.user) {
-          toast.success("User added successfully!", {
+        if (data?.id) {
+          toast.success("Book added successfully!", {
             style: { background: "#333", color: "#fff" },
           });
         }
-        navigate("/users");
+        navigate("/books");
       })
       .catch((err) => {
         setIsLoading(false);
-        console.error("Error in Adding User", err.data);
-        toast.error("An error occurred while adding the user.", {
+        console.error("Error During Added Book", err.data);
+        toast.error("An error occurred while adding the book.", {
           style: { background: "#333", color: "#fff" },
         });
       });
@@ -73,59 +75,69 @@ const Add = () => {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-            Add User
+            Add Book
           </h1>
-          <p className="text-gray-400">Add a new user to the system</p>
+          <p className="text-gray-400">Add a new book to the system</p>
         </div>
       </div>
 
-      <div className="flex items-center justify-center bg-cover bg-center">
-        <Card className="w-full md:w-1/2 lg:w-[50%] p-6 shadow-lg">
+      <div className="mt-4 flex items-center justify-center bg-cover bg-center">
+        <Card className="!mb-7 w-full md:w-1/2 lg:w-[50%] p-6 shadow-lg">
           {/* Form  */}
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <InputField
-              label="Full Name"
-              name="name"
+              label="Title"
+              name="title"
               type="text"
-              placeholder="John Doe"
+              placeholder="Enter the Book Title"
               register={register}
-              errors={errors.name}
+              errors={errors.title}
               className="text-sm py-2"
             />
 
             <InputField
-              label="Email"
-              name="email"
-              type="email"
-              placeholder="you@example.com"
+              label="Description"
+              name="description"
+              type="text"
+              placeholder="Enter the Book Description"
               register={register}
-              errors={errors.email}
+              errors={errors.description}
               className="text-sm py-2"
             />
 
             <InputField
-              label="Password"
-              name="password"
-              type="password"
-              placeholder="Enter password"
+              label="Author"
+              name="author"
+              type="text"
+              placeholder="Enter the Author Name"
               register={register}
-              errors={errors.password}
+              errors={errors.author}
               className="text-sm py-2"
             />
 
             <InputField
-              label="Confirm Password"
-              name="confirmPassword"
-              type="password"
-              placeholder="Enter confirm password"
+              label="Quantity"
+              name="quantity"
+              type="number"
+              placeholder="Enter the Quantity in Stock"
               register={register}
-              errors={errors.confirmPassword}
+              errors={errors.quantity}
+              className="text-sm py-2"
+            />
+
+            <InputField
+              label="Image URL"
+              name="imageUrl"
+              type="string"
+              placeholder="Enter the Image URL"
+              register={register}
+              errors={errors.imageUrl}
               className="text-sm py-2"
             />
 
             <div className="flex justify-end gap-2">
               <div className="w-full">
-                <Button text="Add User" loading={isLoading} />
+                <Button text="Add Book" loading={isLoading} />
               </div>
             </div>
           </form>
@@ -135,4 +147,4 @@ const Add = () => {
   );
 };
 
-export default Add;
+export default BookAdd;

@@ -82,7 +82,7 @@ export default function Navbar({ toggleSidebar }: NavbarProps) {
       </div>
 
       {/* Page Title */}
-      <h1 className=" text-[9px] md:text-[20px] lg:text-[18.5px] font-semibold text-white tracking-wide">
+      <h1 className=" text-[8px] md:text-[20px] lg:text-[18.5px] font-semibold text-white tracking-wide">
         <p>
           {wishUser()} {user?.name} , {getCurrentTime()}
         </p>

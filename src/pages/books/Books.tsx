@@ -110,7 +110,7 @@ const Books = () => {
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
               Books Management
             </h1>
             <p className="text-gray-400">Manage the Books</p>
@@ -118,7 +118,7 @@ const Books = () => {
 
           {/* Create Button  */}
           <Link to="/books/add">
-            <button className="flex gap-2 px-4 bg-[#2D2D2D] py-2  text-white rounded-md hover:cursor-pointer transition-colors text-center">
+            <button className="flex gap-2 px-4 bg-gray-100 dark:bg-[#2D2D2D] py-2 text-gray-800 dark:text-white rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-center hover:cursor-pointer">
               Add <BookPlus size={20} />
             </button>
           </Link>
@@ -129,13 +129,13 @@ const Books = () => {
           <input
             type="text"
             placeholder="Search by book title..."
-            className="w-full sm:w-auto px-4 py-2 bg-black border border-white/10 rounded-md text-sm text-gray-300 focus:outline-none transition-colors"
+            className="w-full sm:w-auto px-4 py-2 bg-white dark:bg-black border border-gray-300 dark:border-white/10 rounded-md text-sm text-gray-900 dark:text-gray-300 focus:outline-none transition-colors placeholder-gray-400 dark:placeholder-gray-500"
             onChange={handleSearch}
           />
         </div>
 
         {/* Books Table */}
-        <Card className="border border-white/10">
+        <Card className="border border-gray-200 dark:border-white/10">
           {isLoading ? (
             <div className="p-8 text-center">
               <p className="text-gray-400">Loading...</p>
@@ -182,16 +182,16 @@ const Books = () => {
                         key={idx}
                         className="border-b border-white/6 hover:bg-white/5 transition-colors"
                       >
-                        <td className="p-3 sm:p-4 text-white font-medium">
+                        <td className="p-3 sm:p-4 text-gray-900 dark:text-white font-medium">
                           <img
                             src={book?.imageUrl || null}
                             className="w-10 h-10 rounded-full border border-[#8c52ef]/40 object-cover"
                           />
                         </td>
-                        <td className="p-3 sm:p-4 text-white font-medium">
+                        <td className="p-3 sm:p-4 text-gray-900 dark:text-white font-medium">
                           {book?.title?.slice(0, 20)}...
                         </td>
-                        <td className="p-3 sm:p-4 text-gray-300 hidden sm:table-cell">
+                        <td className="p-3 sm:p-4 text-gray-600 dark:text-gray-300 hidden sm:table-cell">
                           {book?.description?.slice(0, 10)}...
                         </td>
                         <td className="p-3 sm:p-4 text-gray-300 hidden md:table-cell">
@@ -255,14 +255,14 @@ const Books = () => {
         </Card>
         {/* Delete Confirmation Modal */}
         <div
-          className={`fixed inset-0 bg-black/50 flex items-center justify-center z-20 backdrop-blur-xs transition-opacity  ${
+          className={`fixed inset-0 bg-black/50 dark:bg-black/50 flex items-center justify-center z-20 backdrop-blur-xs transition-opacity  ${
             deleteMenu
               ? "opacity-100 pointer-events-auto"
               : "opacity-0 pointer-events-none"
           }`}
         >
-          <div className="bg-[#1A1A1A] p-6 rounded-md w-full max-w-sm">
-            <h2 className="text-lg font-semibold text-white mb-4">
+          <div className="bg-white dark:bg-[#1A1A1A] p-6 rounded-md w-full max-w-sm shadow-xl dark:shadow-md border border-gray-200 dark:border-transparent">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
               Confirm Deletion
             </h2>
             <p className="text-gray-400 mb-6">

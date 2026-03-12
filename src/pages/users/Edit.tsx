@@ -96,7 +96,7 @@ const Edit = () => {
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
               Edit User Details
             </h1>
             <p className="text-gray-400">Edit the user information</p>
@@ -104,7 +104,7 @@ const Edit = () => {
         </div>
         {/* Form goes here  */}
 
-        <Card className="w-[60%] mx-auto  border border-white/10">
+        <Card className="w-[60%] mx-auto border border-gray-200 dark:border-white/10">
           {isLoading ? (
             <div className="flex items-center justify-center h-48">
               <p className="text-gray-400">Loading user data...</p>

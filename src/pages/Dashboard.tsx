@@ -116,8 +116,8 @@ const Dashboard = () => {
 
   return (
     <div className="">
-      <h1 className="text-3xl font-bold text-white mb-2">Dashboard</h1>
-      <p className="text-gray-400">Welcome to the Dashboard</p>
+      <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Dashboard</h1>
+      <p className="text-gray-600 dark:text-gray-400">Welcome to the Dashboard</p>
 
       <div className="flex flex-wrap gap-5 mt-3">
         {/*  Disaplay the Current States  */}
@@ -133,7 +133,7 @@ const Dashboard = () => {
                 Total Users
               </h2>
               <div className="flex items-center">
-                <p className="text-3xl font-bold text-[#AAC4F5]">
+                <p className="text-3xl font-bold text-[#8c52ef] dark:text-[#AAC4F5]">
                   {users?.length}
                 </p>
 
@@ -152,7 +152,7 @@ const Dashboard = () => {
                 Total Banned Users
               </h2>
               <div className="flex items-center">
-                <p className="text-3xl font-bold text-[#AAC4F5]">
+                <p className="text-3xl font-bold text-[#8c52ef] dark:text-[#AAC4F5]">
                   {bannedUsersCount}
                 </p>
 
@@ -171,7 +171,7 @@ const Dashboard = () => {
                 Available Books
               </h2>
               <div className="flex items-center">
-                <p className="text-3xl font-bold text-[#AAC4F5]">
+                <p className="text-3xl font-bold text-[#8c52ef] dark:text-[#AAC4F5]">
                   {books?.data?.length}
                 </p>
                 {/* Go to Books Management */}
@@ -189,7 +189,7 @@ const Dashboard = () => {
                 Returned Books
               </h2>
               <div className="flex items-center">
-                <p className="text-3xl font-bold text-[#AAC4F5]">
+                <p className="text-3xl font-bold text-[#8c52ef] dark:text-[#AAC4F5]">
                   {totalReturned}
                 </p>
                 {/* Go to Books Management */}
@@ -208,7 +208,7 @@ const Dashboard = () => {
                 My Total Books
               </h2>
               <div className="flex items-center">
-                <p className="text-3xl font-bold text-[#AAC4F5]">
+                <p className="text-3xl font-bold text-[#8c52ef] dark:text-[#AAC4F5]">
                   {totalBooksUser}
                 </p>
                 {/* Go to Books Management */}
@@ -225,7 +225,7 @@ const Dashboard = () => {
                 Active Books
               </h2>
               <div className="flex items-center">
-                <p className="text-3xl font-bold text-[#AAC4F5]">
+                <p className="text-3xl font-bold text-[#8c52ef] dark:text-[#AAC4F5]">
                   {totalActiveBooks}
                 </p>
                 {/* Go to Books Management */}
@@ -238,16 +238,16 @@ const Dashboard = () => {
             </Card>
 
             <Card className="border border-white/10 p-6 w-full md:w-[47%] lg:w-[23%]">
-              <h2 className="text-xl font-semibold text-white mb-4">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
                 Returned Books
               </h2>
               <div className="flex items-center">
-                <p className="text-3xl font-bold text-[#AAC4F5]">
+                <p className="text-3xl font-bold text-[#8c52ef] dark:text-[#AAC4F5]">
                   {totalReturnBooks}
                 </p>
                 {/* Go to Books Management */}
                 <Link to="/my-books" className="ml-auto">
-                  <Card className="bg-[#AAC4F5]/20 rounded-md">
+                  <Card className="bg-[#8c52ef]/10 dark:bg-[#AAC4F5]/20 rounded-md text-[#8c52ef] dark:text-white">
                     <MoveUpRight size={16} />
                   </Card>
                 </Link>

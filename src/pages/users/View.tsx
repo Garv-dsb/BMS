@@ -57,7 +57,7 @@ const View = () => {
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold text-white mb-2">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
             User Information
           </h1>
           <p className="text-gray-400">Check the User Details</p>
@@ -65,7 +65,7 @@ const View = () => {
       </div>
 
       {/* Books Table */}
-      <Card className="border border-white/10">
+      <Card className="border border-gray-200 dark:border-white/10">
         {isLoading ? (
           <div className="p-8 text-center">
             <p className="text-gray-400">Loading...</p>
@@ -81,7 +81,7 @@ const View = () => {
               <div className="w-full flex flex-col md:flex-row lg:flex-row gap-3">
                 {/* Image  */}
                 <div className="md:w-1/3 lg:w-1/3">
-                  <Card className="flex justify-center items-center border border-white/10 hover:cursor-pointer">
+                  <Card className="flex justify-center items-center border border-gray-200 dark:border-white/10 hover:cursor-pointer">
                     <img
                       src={
                         user?.image ||
@@ -96,13 +96,13 @@ const View = () => {
                   {/* Text Data  */}
                   <div className="flex flex-col md:flex-row lg:flex-row gap-2 w-full">
                     {/* Name  */}
-                    <Card className="w-full md:w-[50%] lg:w-[50%] h-fit border border-white/10">
+                    <Card className="w-full md:w-[50%] lg:w-[50%] h-fit border border-gray-200 dark:border-white/10">
                       <p>Name</p>
                       <p className="opacity-50">{user?.name}</p>
                     </Card>
 
                     {/* Email  */}
-                    <Card className="w-full md:w-[50%] lg:w-[50%]t h-fit border border-white/10">
+                    <Card className="w-full md:w-[50%] lg:w-[50%]t h-fit border border-gray-200 dark:border-white/10">
                       <p>Email</p>
                       <p className="opacity-50">{user?.email}</p>
                     </Card>
@@ -110,14 +110,14 @@ const View = () => {
 
                   <div className="flex flex-col md:flex-row lg:flex-row gap-2 w-full">
                     {/* Role  */}
-                    <Card className="w-full md:w-[50%] lg:w-[50%] h-fit border border-white/10">
+                    <Card className="w-full md:w-[50%] lg:w-[50%] h-fit border border-gray-200 dark:border-white/10">
                       <p>Role</p>
                       <p className="opacity-50">{user?.role}</p>
                     </Card>
 
                     {/* Banned status  */}
                     <Card
-                      className={`w-full md:w-[50%] lg:w-[50%] h-fit border border-white/10 `}
+                      className={`w-full md:w-[50%] lg:w-[50%] h-fit border border-gray-200 dark:border-white/10 `}
                     >
                       <p>banned</p>
                       <p
@@ -144,7 +144,7 @@ const View = () => {
                     assignedBooks.map((book: any) => (
                       <Card
                         key={book.id}
-                        className="w-full h-fit border border-white/10"
+                        className="w-full h-fit border border-gray-200 dark:border-white/10"
                       >
                         <div className="flex flex-col gap-2 w-full">
                           <div className="overflow-x-auto space-y-4 p-2">
@@ -184,7 +184,7 @@ const View = () => {
 
                                 <div className="w-full  flex flex-col md:flex-row lg:flex-row gap-2">
                                   {/* Returned Status  */}
-                                  <Card className="w-full md:w-1/2 lg:w-1/2 border border-white/10">
+                                  <Card className="w-full md:w-1/2 lg:w-1/2 border border-gray-200 dark:border-white/10">
                                     <p>Returned Status</p>
                                     <p
                                       className={`font-bold ${book?.status === "returned" ? "text-green-500" : "text-red-500"}`}
@@ -196,7 +196,7 @@ const View = () => {
                                   </Card>
 
                                   {/* Return Date  */}
-                                  <Card className="w-full md:w-1/2 lg:w-1/2 border border-white/10">
+                                  <Card className="w-full md:w-1/2 lg:w-1/2 border border-gray-200 dark:border-white/10">
                                     <p>Return Date</p>
                                     <p className={``}>
                                       {book?.returnedAt

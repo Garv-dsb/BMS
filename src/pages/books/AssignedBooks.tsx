@@ -180,7 +180,7 @@ const AssignedBooks = () => {
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
               Assigned Books Management
             </h1>
             <p className="text-gray-400">Manage the assigned Books</p>
@@ -188,7 +188,7 @@ const AssignedBooks = () => {
 
           {/* Create Button  */}
           <Link to="/assignbook/add">
-            <button className="flex gap-2 px-4 bg-[#2D2D2D] py-2  text-white rounded-md hover:cursor-pointer transition-colors text-center">
+            <button className="flex gap-2 px-4 bg-gray-100 dark:bg-[#2D2D2D] py-2 text-gray-800 dark:text-white rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-center hover:cursor-pointer">
               Assign <BookPlus size={20} />
             </button>
           </Link>
@@ -199,7 +199,7 @@ const AssignedBooks = () => {
           <input
             type="text"
             placeholder="Search by book title..."
-            className="w-full sm:w-auto px-4 py-2 bg-black border border-white/10 rounded-md text-sm text-gray-300 focus:outline-none transition-colors"
+            className="w-full sm:w-auto px-4 py-2 bg-white dark:bg-black border border-gray-300 dark:border-white/10 rounded-md text-sm text-gray-900 dark:text-gray-300 focus:outline-none transition-colors placeholder-gray-400 dark:placeholder-gray-500"
             onChange={handleSearch}
           />
           <div className="flex gap-2">
@@ -207,7 +207,7 @@ const AssignedBooks = () => {
             <div className="flex items-center gap-2">
               {isReturned ? (
                 <button
-                  className={`w-full sm:w-auto px-4 py-2 bg-black border border-white/10 rounded-md text-sm  focus:outline-none transition-colors duration-300 ease-in-out ${isReturned ? "bg-green-300 opacity-50  text-black " : "hover:bg-white/10 hover:text-white hover:cursor-pointer text-gray-300"} ${isAssigned ? "opacity-50 cursor-not-allowed" : "hover:cursor-pointer"}`}
+                  className={`w-full sm:w-auto px-4 py-2 bg-white dark:bg-black border border-gray-300 dark:border-white/10 rounded-md text-sm focus:outline-none transition-colors duration-300 ease-in-out ${isReturned ? "bg-green-100 dark:bg-green-300 opacity-50 text-gray-900 dark:text-black " : "hover:bg-gray-100 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white hover:cursor-pointer text-gray-600 dark:text-gray-300"} ${isAssigned ? "opacity-50 cursor-not-allowed" : "hover:cursor-pointer"}`}
                   onClick={() => {
                     isAssigned ? null : setIsReturned(false);
                     handleReturnedFilterToggle(false);
@@ -217,7 +217,7 @@ const AssignedBooks = () => {
                 </button>
               ) : (
                 <button
-                  className={`w-full sm:w-auto px-4 py-2 bg-black border border-white/10 rounded-md text-sm text-gray-300 focus:outline-none transition-colors duration-300 ease-in-out hover:bg-white/10 hover:text-white  ${isAssigned ? "opacity-50 cursor-not-allowed" : "hover:cursor-pointer"}`}
+                  className={`w-full sm:w-auto px-4 py-2 bg-white dark:bg-black border border-gray-300 dark:border-white/10 rounded-md text-sm text-gray-600 dark:text-gray-300 focus:outline-none transition-colors duration-300 ease-in-out hover:bg-gray-100 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white  ${isAssigned ? "opacity-50 cursor-not-allowed" : "hover:cursor-pointer"}`}
                   onClick={() => {
                     isAssigned ? null : setIsReturned(true);
                     handleReturnedFilterToggle(true);
@@ -231,7 +231,7 @@ const AssignedBooks = () => {
             <div className="flex items-center gap-2">
               {isAssigned ? (
                 <button
-                  className={`w-full sm:w-auto px-4 py-2 bg-black border border-white/10 rounded-md text-sm  focus:outline-none transition-colors duration-300 ease-in-out ${isAssigned ? "bg-green-300 opacity-50  text-black " : "hover:bg-white/10 hover:text-white hover:cursor-pointer text-gray-300"} ${isReturned ? "opacity-50 cursor-not-allowed" : "hover:cursor-pointer"}`}
+                  className={`w-full sm:w-auto px-4 py-2 bg-white dark:bg-black border border-gray-300 dark:border-white/10 rounded-md text-sm focus:outline-none transition-colors duration-300 ease-in-out ${isAssigned ? "bg-green-100 dark:bg-green-300 opacity-50 text-gray-900 dark:text-black " : "hover:bg-gray-100 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white hover:cursor-pointer text-gray-600 dark:text-gray-300"} ${isReturned ? "opacity-50 cursor-not-allowed" : "hover:cursor-pointer"}`}
                   disabled={isReturned}
                   onClick={() => {
                     setIsAssigned(false);
@@ -242,7 +242,7 @@ const AssignedBooks = () => {
                 </button>
               ) : (
                 <button
-                  className={`w-full sm:w-auto px-4 py-2 bg-black border border-white/10 rounded-md text-sm text-gray-300 focus:outline-none transition-colors duration-300 ease-in-out hover:bg-white/10 hover:text-white  ${isReturned ? "opacity-50 cursor-not-allowed" : "hover:cursor-pointer"}`}
+                  className={`w-full sm:w-auto px-4 py-2 bg-white dark:bg-black border border-gray-300 dark:border-white/10 rounded-md text-sm text-gray-600 dark:text-gray-300 focus:outline-none transition-colors duration-300 ease-in-out hover:bg-gray-100 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white  ${isReturned ? "opacity-50 cursor-not-allowed" : "hover:cursor-pointer"}`}
                   disabled={isReturned}
                   onClick={() => {
                     setIsAssigned(true);
@@ -257,7 +257,7 @@ const AssignedBooks = () => {
         </div>
 
         {/* Books Table */}
-        <Card className="border border-white/10">
+        <Card className="border border-gray-200 dark:border-white/10">
           {isLoading ? (
             <div className="p-8 text-center">
               <p className="text-gray-400">Loading...</p>
@@ -304,7 +304,7 @@ const AssignedBooks = () => {
                         key={idx}
                         className="border-b border-white/6 hover:bg-white/5 transition-colors"
                       >
-                        <td className="p-3 sm:p-4 text-white font-medium hidden md:table-cell">
+                        <td className="p-3 sm:p-4 text-gray-900 dark:text-white font-medium hidden md:table-cell">
                           <img
                             src={book?.book?.imageUrl || null}
                             alt="Book"
@@ -312,15 +312,15 @@ const AssignedBooks = () => {
                           />
                         </td>
                         {/* User Book id  */}
-                        <td className="p-3 sm:p-4 text-white font-medium">
+                        <td className="p-3 sm:p-4 text-gray-900 dark:text-white font-medium">
                           {book?.book?.id}
                         </td>
                         {/* Assigned Book Title  */}
-                        <td className="p-3 sm:p-4 text-white font-medium">
+                        <td className="p-3 sm:p-4 text-gray-900 dark:text-white font-medium">
                           {book?.book?.title?.slice(0, 20)}...
                         </td>
                         {/* User email  */}
-                        <td className="p-3 sm:p-4 text-gray-300 ">
+                        <td className="p-3 sm:p-4 text-gray-600 dark:text-gray-300 ">
                           {book?.user?.email}
                         </td>
 
@@ -361,12 +361,12 @@ const AssignedBooks = () => {
 
                               {book?.status !== "returned" &&
                                 openMenu === book?.id && (
-                                  <div className="absolute right-0 top-[-30px] w-48 bg-black border border-white/10 rounded-md shadow-lg z-10">
+                                  <div className="absolute right-0 top-[-30px] w-48 bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-md shadow-lg z-10">
                                     <button
-                                      className={`w-full hover:cursor-pointer text-left px-4 py-2 text-sm text-gray-300 transition-colors rounded-md flex items-center gap-2 ${
+                                      className={`w-full hover:cursor-pointer text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 transition-colors rounded-md flex items-center gap-2 ${
                                         mutatingUserId === book?.book?.id
                                           ? "opacity-50 cursor-not-allowed"
-                                          : "hover:bg-white/10 hover:text-white"
+                                          : "hover:bg-gray-100 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white"
                                       }`}
                                       onClick={() =>
                                         handleUnassign.mutate({

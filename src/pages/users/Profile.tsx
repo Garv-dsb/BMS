@@ -35,7 +35,7 @@ const Profile = () => {
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold text-white mb-2">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
             {user?.name}'s Profile
           </h1>
           <p className="text-gray-400">View Profile</p>
@@ -43,7 +43,7 @@ const Profile = () => {
       </div>
 
       {/* Profile Details */}
-      <Card className="w-[50%] mx-auto border border-white/10">
+      <Card className="w-[50%] mx-auto border border-gray-200 dark:border-white/10">
         <div className="">
           {isLoading ? (
             <div className="flex items-center justify-center h-48">
@@ -64,16 +64,16 @@ const Profile = () => {
               </div>
 
               <div>
-                <h2 className="text-xl font-semibold text-gray-300">Name</h2>
-                <p className="text-gray-400">{user?.name}</p>
+                <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-300">Name</h2>
+                <p className="text-gray-600 dark:text-gray-400">{user?.name}</p>
               </div>
               <div>
-                <h2 className="text-xl font-semibold text-gray-300">Email</h2>
-                <p className="text-gray-400">{user?.email}</p>
+                <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-300">Email</h2>
+                <p className="text-gray-600 dark:text-gray-400">{user?.email}</p>
               </div>
               <div>
-                <h2 className="text-xl font-semibold text-gray-300">Role</h2>
-                <p className="text-gray-400">{user?.role}</p>
+                <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-300">Role</h2>
+                <p className="text-gray-600 dark:text-gray-400">{user?.role}</p>
               </div>
 
               <div className="text-center gap-3 w-full">

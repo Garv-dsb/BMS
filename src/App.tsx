@@ -26,7 +26,7 @@ import AssignedBooks from "./pages/books/AssignedBooks";
 
 const App = () => {
   return (
-    <div className="h-screen w-screen bg-black text-white overflow-x-hidden">
+    <div className="h-screen w-screen bg-gray-50 text-gray-900 dark:bg-black dark:text-white overflow-x-hidden transition-colors duration-200">
       <Routes>
         {/* if authenticated user tries to access login or register page, redirect to dashboard  else allow access to login and register page */}
 

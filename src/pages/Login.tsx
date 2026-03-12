@@ -81,12 +81,12 @@ export default function Login() {
   };
 
   return (
-    <div className="mx-auto my-auto h-screen my-auto p-4 md:p-3 lg:p-2 flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1533478684236-61e1192879e8?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]  bg-cover bg-center">
-      <div className="w-full md:w-[60%] lg:w-1/2 bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl shadow-md">
+    <div className="mx-auto my-auto h-screen p-4 md:p-3 lg:p-2 flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1533478684236-61e1192879e8?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center">
+      <div className="w-full md:w-[60%] lg:w-1/2 bg-white/90 dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 p-6 rounded-2xl shadow-xl dark:shadow-md transition-colors duration-200">
         {/* Heading  */}
         <div className="text-center mb-6">
-          <h1 className="text-3xl font-bold text-white mb-2">Welcome Back</h1>
-          <p className="text-gray-400">Sign in to your account</p>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Welcome Back</h1>
+          <p className="text-gray-600 dark:text-gray-400">Sign in to your account</p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -119,9 +119,9 @@ export default function Login() {
         </div> */}
 
         <div className="mt-6 text-center">
-          <p className="text-gray-400">
+          <p className="text-gray-700 dark:text-gray-400">
             Don't have an account?{" "}
-            <Link to="/register" className="text-[#8c52ef] hover:underline">
+            <Link to="/register" className="text-[#8c52ef] hover:underline font-medium">
               Sign up
             </Link>
           </p>

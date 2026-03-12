@@ -94,18 +94,18 @@ export default function Register() {
   };
 
   return (
-    <div className="mx-auto my-auto h-screen my-auto p-4 md:p-3 lg:p-2 flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1533478684236-61e1192879e8?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]  bg-cover bg-center">
-      <div className="w-full md:w-[60%] lg:w-1/2 bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl shadow-md">
+    <div className="mx-auto my-auto h-screen p-4 md:p-3 lg:p-2 flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1533478684236-61e1192879e8?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center">
+      <div className="w-full md:w-[60%] lg:w-1/2 bg-white/90 dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 p-6 rounded-2xl shadow-xl dark:shadow-md transition-colors duration-200">
         {/* Title  */}
-        <div className="text-center border-b border-white/10 mb-6 pb-4">
-          <h2 className="font-[500]">Book Managment System</h2>
+        <div className="text-center border-b border-gray-200 dark:border-white/10 mb-6 pb-4">
+          <h2 className="font-[500] text-gray-900 dark:text-white">Book Management System</h2>
         </div>
 
         {/* Heading  */}
-        <h2 className="text-lg font-semibold text-white mb-1">
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
           Create User Account
         </h2>
-        <p className="text-gray-400 mb-4 text-xs">
+        <p className="text-gray-600 dark:text-gray-400 mb-4 text-xs">
           Join us by creating a new account
         </p>
 
@@ -160,7 +160,7 @@ export default function Register() {
         </form>
 
         {/* Want to Login  */}
-        <div className="text-sm text-gray-400 mt-4 text-center">
+        <div className="text-sm text-gray-700 dark:text-gray-400 mt-4 text-center">
           Already have an account?{" "}
           <Link
             to="/login"

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { Menu } from "lucide-react";
+import { Menu, Moon, Sun } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useTheme } from "../context/ThemeContext";
 
 interface NavbarProps {
   toggleSidebar: () => void;
@@ -9,6 +10,7 @@ interface NavbarProps {
 export default function Navbar({ toggleSidebar }: NavbarProps) {
   const navigate = useNavigate();
   const currentPath = useLocation().pathname;
+  const { theme, toggleTheme } = useTheme();
 
   // Get the user
   const { data: user = [] } = useQuery({
@@ -60,11 +62,11 @@ export default function Navbar({ toggleSidebar }: NavbarProps) {
   };
 
   return (
-    <header className="flex items-center justify-between  px-6 py-3 bg-[#0f0f0f] border-b border-white/10 sticky top-0 z-30">
+    <header className="flex items-center justify-between px-6 py-[9px] bg-white dark:bg-[#0f0f0f] border-b border-gray-200 dark:border-white/10 sticky top-0 z-30 transition-colors duration-200">
       <div className="flex gap-4 items-center">
         {/* Sidebar Toggle Button */}
         <button
-          className="text-gray-300 hover:text-[#8c52ef] lg:hidden"
+          className="text-gray-600 dark:text-gray-300 hover:text-[#8c52ef] lg:hidden"
           onClick={toggleSidebar}
         >
           <Menu size={22} />
@@ -81,12 +83,19 @@ export default function Navbar({ toggleSidebar }: NavbarProps) {
         )}
       </div>
 
-      {/* Page Title */}
-      <h1 className=" text-[8px] md:text-[20px] lg:text-[18.5px] font-semibold text-white tracking-wide">
-        <p>
+      {/* Page Title & Theme Toggle */}
+      <div className="flex items-center gap-4">
+        <h1 className="text-[12px] md:text-[20px] lg:text-[18.5px] font-semibold text-gray-900 dark:text-white tracking-wide">
           {wishUser()} {user?.name} , {getCurrentTime()}
-        </p>
-      </h1>
+        </h1>
+        <button
+          onClick={toggleTheme}
+          className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+          aria-label="Toggle Theme"
+        >
+          {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+        </button>
+      </div>
     </header>
   );
 }

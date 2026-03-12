@@ -201,7 +201,7 @@ const Users = () => {
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
               Users Management
             </h1>
             <p className="text-gray-400">Manage the Users</p>
@@ -209,7 +209,7 @@ const Users = () => {
 
           {/* Create Button  */}
           <Link to="/users/add">
-            <button className="flex gap-2 px-4 bg-[#2D2D2D] py-2  text-white rounded-md hover:cursor-pointer transition-colors">
+            <button className="flex gap-2 px-4 bg-gray-100 dark:bg-[#2D2D2D] py-2 text-gray-800 dark:text-white rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 hover:cursor-pointer transition-colors">
               Create <UserPlus size={20} />
             </button>
           </Link>
@@ -220,13 +220,13 @@ const Users = () => {
           <input
             type="text"
             placeholder="Search by email"
-            className="w-full sm:w-auto px-4 py-2 bg-black border border-white/10 rounded-md text-sm text-gray-300 focus:outline-none transition-colors"
+            className="w-full sm:w-auto px-4 py-2 bg-white dark:bg-black border border-gray-300 dark:border-white/10 rounded-md text-sm text-gray-900 dark:text-gray-300 focus:outline-none transition-colors placeholder-gray-400 dark:placeholder-gray-500"
             onChange={handleSearch}
           />
         </div>
 
         {/* Books Table */}
-        <Card className="border border-white/10">
+        <Card className="border border-gray-200 dark:border-white/10">
           {isLoading ? (
             <div className="p-8 text-center">
               <p className="text-gray-400">Loading...</p>
@@ -240,25 +240,25 @@ const Users = () => {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-white/10">
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm">
                       Image
                     </th>
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm">
                       Name
                     </th>
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm hidden sm:table-cell">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm hidden sm:table-cell">
                       Email
                     </th>
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm hidden md:table-cell">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm hidden md:table-cell">
                       Role
                     </th>
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm hidden lg:table-cell">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm hidden lg:table-cell">
                       Issued Books
                     </th>
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm hidden xl:table-cell">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm hidden xl:table-cell">
                       Banned Status
                     </th>
-                    <th className="text-center p-3 sm:p-4 text-gray-300 font-semibold text-sm">
+                    <th className="text-center p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm">
                       Actions
                     </th>
                   </tr>
@@ -269,7 +269,7 @@ const Users = () => {
                       key={index}
                       className="border-b border-white/6 hover:bg-white/5 transition-colors"
                     >
-                      <td className="p-3 sm:p-4 text-white font-medium">
+                      <td className="p-3 sm:p-4 text-gray-900 dark:text-white font-medium">
                         <img
                           src={
                             user?.image ||
@@ -279,21 +279,19 @@ const Users = () => {
                           className="w-10 h-10 rounded-full border border-[#8c52ef]/40 object-cover"
                         />
                       </td>
-                      <td className="p-3 sm:p-4 text-white font-medium">
+                      <td className="p-3 sm:p-4 text-gray-900 dark:text-white font-medium">
                         {user.name}
                       </td>
-                      <td className="p-3 sm:p-4 text-gray-300 hidden sm:table-cell">
+                      <td className="p-3 sm:p-4 text-gray-600 dark:text-gray-300 hidden sm:table-cell">
                         {user.email}
                       </td>
-                      <td className="p-3 sm:p-4 text-gray-300 hidden md:table-cell">
+                      <td className="p-3 sm:p-4 text-gray-600 dark:text-gray-300 hidden md:table-cell">
                         {user.role}
                       </td>
-                      <td
-                        className={`p-3 sm:p-4 text-gray-300 hidden lg:table-cell `}
-                      >
+                      <td className={`p-3 sm:p-4 text-gray-600 dark:text-gray-300 hidden lg:table-cell `}>
                         {user.assignedBooksCount}
                       </td>
-                      <td className="p-3 sm:p-4 text-gray-300 hidden xl:table-cell">
+                      <td className="p-3 sm:p-4 text-gray-600 dark:text-gray-300 hidden xl:table-cell">
                         <span
                           className={`${user.banned ? "bg-red-300/10 text-red-300 " : "bg-[#ABE7B2]/30 text-[#ABE7B2]"}  px-3 py-1 rounded-md text-xs font-medium`}
                         >
@@ -338,12 +336,12 @@ const Users = () => {
 
                             {/* Dropdown Menu */}
                             {openMenu === user.id && (
-                              <div className="absolute right-0 top-[-30px] w-48 bg-black border border-white/10 rounded-md shadow-lg z-10">
+                              <div className="absolute right-0 top-[-30px] w-48 bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-md shadow-lg z-10">
                                 <button
-                                  className={`w-full hover:cursor-pointer text-left px-4 py-2 text-sm text-gray-300 transition-colors rounded-md flex items-center gap-2 ${
+                                  className={`w-full hover:cursor-pointer text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 transition-colors rounded-md flex items-center gap-2 ${
                                     mutatingUserId === user.id
                                       ? "opacity-50 cursor-not-allowed"
-                                      : "hover:bg-white/10 hover:text-white"
+                                      : "hover:bg-gray-100 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white"
                                   }`}
                                   onClick={() =>
                                     handleToggleBan(user.id, user.banned)
@@ -389,14 +387,14 @@ const Users = () => {
 
         {/* Delete Confirmation Modal */}
         <div
-          className={`fixed inset-0 bg-black/50 flex items-center justify-center backdrop-blur-xs z-20 transition-opacity ${
+          className={`fixed inset-0 bg-black/50 dark:bg-black/50 flex items-center justify-center backdrop-blur-xs z-20 transition-opacity ${
             deleteMenu
               ? "opacity-100 pointer-events-auto"
               : "opacity-0 pointer-events-none"
           }`}
         >
-          <div className="bg-[#1A1A1A] p-6 rounded-md w-full max-w-sm">
-            <h2 className="text-lg font-semibold text-white mb-4">
+          <div className="bg-white dark:bg-[#1A1A1A] p-6 rounded-md w-full max-w-sm shadow-xl dark:shadow-md border border-gray-200 dark:border-transparent">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
               Confirm Deletion
             </h2>
             <p className="text-gray-400 mb-6">

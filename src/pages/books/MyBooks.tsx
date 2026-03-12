@@ -28,7 +28,7 @@ const MyBooks = () => {
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
               My Books History
             </h1>
             <p className="text-gray-400">View the Previous Books</p>
@@ -36,7 +36,7 @@ const MyBooks = () => {
         </div>
 
         {/* Books Table */}
-        <Card className="border border-white/10">
+        <Card className="border border-gray-200 dark:border-white/10">
           {isLoading ? (
             <div className="p-8 text-center">
               <p className="text-gray-400">Loading...</p>
@@ -50,19 +50,19 @@ const MyBooks = () => {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-white/10">
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm">
                       Image
                     </th>
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm">
                       Title
                     </th>
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm hidden sm:table-cell">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm hidden sm:table-cell">
                       Assigned Date
                     </th>
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm hidden md:table-cell">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm hidden md:table-cell">
                       Status
                     </th>
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm hidden lg:table-cell">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm hidden lg:table-cell">
                       Return Date
                     </th>
                   </tr>
@@ -73,17 +73,17 @@ const MyBooks = () => {
                       key={index}
                       className="border-b border-white/6 hover:bg-white/5 transition-colors"
                     >
-                      <td className="p-3 sm:p-4 text-white font-medium">
+                      <td className="p-3 sm:p-4 text-gray-900 dark:text-white font-medium">
                         <img
                           src={book?.book?.imageUrl}
                           alt="avatar"
                           className="w-10 h-10 rounded-full border border-[#8c52ef]/40 object-cover"
                         />
                       </td>
-                      <td className="p-3 sm:p-4 text-white font-medium">
+                      <td className="p-3 sm:p-4 text-gray-900 dark:text-white font-medium">
                         {book?.book?.title}
                       </td>
-                      <td className="p-3 sm:p-4 text-gray-300 hidden sm:table-cell">
+                      <td className="p-3 sm:p-4 text-gray-600 dark:text-gray-300 hidden sm:table-cell">
                         {book?.assignedAt.slice(0, 10)}
                       </td>
                       <td
@@ -92,7 +92,7 @@ const MyBooks = () => {
                         {book.status === "active" ? "Not Returned" : "Returned"}
                       </td>
                       <td
-                        className={`p-3 sm:p-4 text-gray-300 hidden lg:table-cell `}
+                        className={`p-3 sm:p-4 text-gray-600 dark:text-gray-300 hidden lg:table-cell `}
                       >
                         {book?.returnedAt?.slice(0, 10) || "-"}
                       </td>

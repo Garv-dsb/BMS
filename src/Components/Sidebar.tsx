@@ -164,13 +164,13 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
         isOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
-      <aside className="w-full h-screen bg-[#0f0f0f] text-white flex flex-col justify-between border-r border-white/10 relative">
+      <aside className="w-full h-screen bg-white dark:bg-[#0f0f0f] text-gray-900 dark:text-white flex flex-col justify-between border-r border-gray-200 dark:border-white/10 relative transition-colors duration-200">
         {/* Logo */}
         <div>
-          <div className="p-3 text-lg font-semibold flex items-center justify-between border-b border-white/10">
+          <div className="p-3 text-lg font-semibold flex items-center justify-between border-b border-gray-200 dark:border-white/10">
             <span className="flex items-center gap-1.5">Book Management</span>
             <button
-              className="lg:hidden text-gray-400 hover:text-white transition-colors p-1"
+              className="lg:hidden text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-1"
               onClick={() => setIsOpen(false)}
             >
               <X size={20} />
@@ -194,8 +194,8 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
                           className={({ isActive }) =>
                             `flex items-center gap-2 px-3 py-1.5 rounded-md text-[13px] transition-all duration-200 ${
                               isActive
-                                ? "bg-[#8c52ef]/20 text-[#8c52ef]-400"
-                                : "text-gray-300 hover:bg-[#8c52ef]-500/10 hover:text-[#8c52ef]-400"
+                                ? "bg-[#8c52ef]/20 text-[#8c52ef] dark:text-[#8c52ef]-400"
+                                : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#8c52ef]/10 hover:text-gray-900 dark:hover:text-[#8c52ef]"
                             }`
                           }
                         >
@@ -236,10 +236,10 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-white/10 p-2.5 space-y-1.5 relative">
+        <div className="border-t border-gray-200 dark:border-white/10 p-2.5 space-y-1.5 relative">
           {/* Profile Section with Dropdown */}
           <div
-            className="flex items-center justify-between mt-3 bg-white/5 px-3 py-2 rounded-lg cursor-pointer hover:bg-white/10 transition"
+            className="flex items-center justify-between mt-3 bg-gray-100 dark:bg-white/5 px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-white/10 transition"
             onClick={() => setOpenMenu(!openMenu)}
           >
             <div className="flex items-center gap-2">
@@ -253,7 +253,7 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
               />
               <div>
                 <p className="text-[13px] font-semibold">{user?.name}</p>
-                <p className="text-[11px] text-gray-400">{user?.email}</p>
+                <p className="text-[11px] text-gray-500 dark:text-gray-400">{user?.email}</p>
               </div>
             </div>
             <MoreHorizontal size={18} />
@@ -263,7 +263,7 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
           {openMenu && (
             <div
               ref={menuRef}
-              className="absolute left-2 bottom-16 w-56 bg-[#181818] text-gray-200 rounded-xl shadow-lg border border-white/10 p-3 space-y-3 animate-fadeIn mb-2"
+              className="absolute left-2 bottom-16 w-56 bg-white dark:bg-[#181818] text-gray-900 dark:text-gray-200 rounded-xl shadow-lg border border-gray-200 dark:border-white/10 p-3 space-y-3 animate-fadeIn mb-2"
             >
               {/* Menu Links */}
               {userData.role === "user" ? (
@@ -274,7 +274,7 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
                       setOpenMenu(false);
                       setIsOpen(false);
                     }}
-                    className="w-full flex items-center gap-2 px-2 py-2 text-gray-300 hover:bg-gray-700/10 rounded-md hover:text-gray-200 transition-colors"
+                    className="w-full flex items-center gap-2 px-2 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700/10 rounded-md hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
                   >
                     <User size={16} /> Profile
                   </NavLink>
@@ -284,12 +284,12 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
                       setOpenMenu(false);
                       setIsOpen(false);
                     }}
-                    className="w-full flex items-center gap-2 px-2 py-2 text-gray-300 hover:bg-gray-700/10 rounded-md hover:text-gray-200 transition-colors"
+                    className="w-full flex items-center gap-2 px-2 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700/10 rounded-md hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
                   >
                     <Settings2 size={16} /> Change Password
                   </NavLink>
                   <div className="space-y-1 text-[13px]" onClick={handleLogOut}>
-                    <button className="w-full flex items-center gap-2 px-2 py-2 text-red-400 hover:bg-red-500/10 rounded-md hover:cursor-pointer transition-colors">
+                    <button className="w-full flex items-center gap-2 px-2 py-2 text-red-500 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-500/10 rounded-md hover:cursor-pointer transition-colors">
                       <LogOut size={16} /> Logout
                     </button>
                   </div>

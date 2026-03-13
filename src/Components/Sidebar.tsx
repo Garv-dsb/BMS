@@ -45,7 +45,6 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
     },
   });
 
-
   // navigater
   const navigate = useNavigate();
 
@@ -208,7 +207,7 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
                 ))
               : userNavSections.map((section) => (
                   <div key={section.title}>
-                    <h3 className="text-[11px] uppercase text-gray-400 font-semibold mb-1.5 px-2 tracking-wider">
+                    <h3 className="text-[11px] uppercase text-gray-600 dark:text-gray-200 font-semibold mb-1.5 px-2 tracking-wider">
                       {section.title}
                     </h3>
                     <div className="flex flex-col gap-0.5">
@@ -221,7 +220,7 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
                             `flex items-center gap-2 px-3 py-1.5 rounded-md text-[13px] transition-all duration-200 ${
                               isActive
                                 ? "bg-[#8c52ef]/20 text-[#8c52ef]-400"
-                                : "text-gray-300 hover:bg-[#8c52ef]-500/10 hover:text-[#8c52ef]-400"
+                                : "text-gray-600 dark:text-gray-200 hover:bg-[#8c52ef]-500/10 hover:text-[#8c52ef]-400"
                             }`
                           }
                         >
@@ -253,7 +252,9 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
               />
               <div>
                 <p className="text-[13px] font-semibold">{user?.name}</p>
-                <p className="text-[11px] text-gray-500 dark:text-gray-400">{user?.email}</p>
+                <p className="text-[11px] text-gray-500 dark:text-gray-400">
+                  {user?.email}
+                </p>
               </div>
             </div>
             <MoreHorizontal size={18} />

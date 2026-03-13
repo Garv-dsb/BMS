@@ -51,14 +51,6 @@ const Users = () => {
     },
   });
 
-  // Pagination logic
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedUsers = users?.data?.slice(
-    startIndex,
-    startIndex + itemsPerPage,
-  );
-
   // Reset to page 1 when users data changes
   useEffect(() => {
     setCurrentPage(1);
@@ -173,7 +165,7 @@ const Users = () => {
       return response.json();
     },
     onSuccess: (data) => {
-      setTotalItems(data.total);
+      setTotalItems(data?.meta?.total);
       queryClient.setQueryData(["users", "users-with-counts"], data);
     },
     onError: (error) => {
@@ -194,6 +186,12 @@ const Users = () => {
     const searchTerm = e.target.value;
     searchMutuation.mutate(searchTerm);
   };
+
+  // Pagination logic
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedUsers =
+    users?.data?.slice(startIndex, startIndex + itemsPerPage) || [];
 
   return (
     <div className="overflow-x-hidden">
@@ -267,7 +265,7 @@ const Users = () => {
                   {paginatedUsers.map((user: User, index: any) => (
                     <tr
                       key={index}
-                      className="border-b border-white/6 hover:bg-white/5 transition-colors"
+                      className="border-b border-black/6 dark:border-white/6 hover:bg-white/5 transition-colors"
                     >
                       <td className="p-3 sm:p-4 text-gray-900 dark:text-white font-medium">
                         <img
@@ -288,7 +286,9 @@ const Users = () => {
                       <td className="p-3 sm:p-4 text-gray-600 dark:text-gray-300 hidden md:table-cell">
                         {user.role}
                       </td>
-                      <td className={`p-3 sm:p-4 text-gray-600 dark:text-gray-300 hidden lg:table-cell `}>
+                      <td
+                        className={`p-3 sm:p-4 text-gray-600 dark:text-gray-300 hidden lg:table-cell `}
+                      >
                         {user.assignedBooksCount}
                       </td>
                       <td className="p-3 sm:p-4 text-gray-600 dark:text-gray-300 hidden xl:table-cell">
@@ -393,7 +393,7 @@ const Users = () => {
               : "opacity-0 pointer-events-none"
           }`}
         >
-          <div className="bg-white dark:bg-[#1A1A1A] p-6 rounded-md w-full max-w-sm shadow-xl dark:shadow-md border border-gray-200 dark:border-transparent">
+          <div className="bg-white dark:bg-[#1A1A1A] p-6 rounded-md w-60 md:w-full lg:w-full max-w-sm shadow-xl dark:shadow-md border border-gray-200 dark:border-transparent">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
               Confirm Deletion
             </h2>

@@ -129,7 +129,7 @@ const Books = () => {
           <input
             type="text"
             placeholder="Search by book title..."
-            className="w-full sm:w-auto px-4 py-2 bg-white dark:bg-black border border-gray-300 dark:border-white/10 rounded-md text-sm text-gray-900 dark:text-gray-300 focus:outline-none transition-colors placeholder-gray-400 dark:placeholder-gray-500"
+            className="w-full sm:w-auto px-4 py-2 bg-white dark:bg-black border border-gray-300 dark:border-white/10 rounded-md text-sm text-gray-900 dark:text-gray-600 dark:text-gray-300 focus:outline-none transition-colors placeholder-gray-400 dark:placeholder-gray-500"
             onChange={handleSearch}
           />
         </div>
@@ -148,29 +148,29 @@ const Books = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-white/10">
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm">
+                  <tr className="border-b border-black/10 dark:border-white/10">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm">
                       Image
                     </th>
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm">
                       Title
                     </th>
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm hidden sm:table-cell">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm hidden sm:table-cell">
                       Description
                     </th>
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm hidden md:table-cell">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm hidden md:table-cell">
                       Author
                     </th>
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm hidden lg:table-cell">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm hidden xl:table-cell">
                       Quantity
                     </th>
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm hidden lg:table-cell">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm hidden xl:table-cell">
                       Availability
                     </th>
-                    <th className="text-center p-3 sm:p-4 text-gray-300 font-semibold text-sm hidden xl:table-cell">
+                    <th className="text-center p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm hidden xl:table-cell">
                       Added Date
                     </th>
-                    <th className="text-center p-3 sm:p-4 text-gray-300 font-semibold text-sm">
+                    <th className="text-center p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm">
                       Actions
                     </th>
                   </tr>
@@ -180,7 +180,7 @@ const Books = () => {
                     return (
                       <tr
                         key={idx}
-                        className="border-b border-white/6 hover:bg-white/5 transition-colors"
+                        className="border-b border-black/6 dark:border-white/6 hover:bg-white/5 transition-colors"
                       >
                         <td className="p-3 sm:p-4 text-gray-900 dark:text-white font-medium">
                           <img
@@ -191,21 +191,21 @@ const Books = () => {
                         <td className="p-3 sm:p-4 text-gray-900 dark:text-white font-medium">
                           {book?.title?.slice(0, 20)}...
                         </td>
-                        <td className="p-3 sm:p-4 text-gray-600 dark:text-gray-300 hidden sm:table-cell">
+                        <td className="p-3 sm:p-4 text-gray-600 dark:text-gray-300 dark:text-gray-300 hidden sm:table-cell">
                           {book?.description?.slice(0, 10)}...
                         </td>
-                        <td className="p-3 sm:p-4 text-gray-300 hidden md:table-cell">
+                        <td className="p-3 sm:p-4 text-gray-600 dark:text-gray-300 hidden md:table-cell">
                           {book?.author}
                         </td>
-                        <td className="p-3 sm:p-4 text-gray-300 hidden xl:table-cell">
+                        <td className="p-3 sm:p-4 text-gray-600 dark:text-gray-300 hidden xl:table-cell">
                           {book?.quantity}
                         </td>
                         <td
-                          className={`p-3 sm:p-4 text-gray-300 hidden xl:table-cell ${book?.availability === 0 ? "text-red-500 font-bold" : ""}`}
+                          className={`p-3 sm:p-4 text-gray-600 dark:text-gray-300 hidden xl:table-cell ${book?.availability === 0 ? "text-red-500 font-bold" : ""}`}
                         >
                           {book?.availability}
                         </td>
-                        <td className="p-3 sm:p-4 text-gray-300 hidden xl:table-cell">
+                        <td className="p-3 sm:p-4 text-gray-600 dark:text-gray-300 hidden xl:table-cell">
                           {book?.createdAt?.slice(0, 10)}
                         </td>
                         <td className="p-3 sm:p-4 text-center">
@@ -261,7 +261,7 @@ const Books = () => {
               : "opacity-0 pointer-events-none"
           }`}
         >
-          <div className="bg-white dark:bg-[#1A1A1A] p-6 rounded-md w-full max-w-sm shadow-xl dark:shadow-md border border-gray-200 dark:border-transparent">
+          <div className="bg-white dark:bg-[#1A1A1A] p-6 rounded-md w-60 md:w-full lg:w-full max-w-sm shadow-xl dark:shadow-md border border-gray-200 dark:border-transparent ">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
               Confirm Deletion
             </h2>

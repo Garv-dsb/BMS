@@ -128,7 +128,7 @@ const Edit = () => {
               <div className="flex gap-2 w-full text-sm  mt-4 mx-auto">
                 <button
                   type="submit"
-                  className={`transition-colors p-2 bg-[#8c52ef]/30 text-white rounded-md hover:bg-[#8c52ef]/50 w-full hover:cursor-pointer ${
+                  className={`transition-colors p-2 bg-[#8c52ef]/30 text-black dark:text-white rounded-md hover:bg-[#8c52ef]/50 w-full hover:cursor-pointer ${
                     handleProfileMututate?.isPending
                       ? "cursor-not-allowed opacity-40"
                       : ""

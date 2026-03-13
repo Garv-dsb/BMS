@@ -43,7 +43,7 @@ const Profile = () => {
       </div>
 
       {/* Profile Details */}
-      <Card className="w-[50%] mx-auto border border-gray-200 dark:border-white/10">
+      <Card className="w-full md:w-[50%] lg:w-[50%] mx-auto border border-gray-200 dark:border-white/10">
         <div className="">
           {isLoading ? (
             <div className="flex items-center justify-center h-48">

@@ -75,7 +75,7 @@ export default function Navbar({ toggleSidebar }: NavbarProps) {
         {/* Back Button */}
         {currentPath !== "/" && (
           <button
-            className="`flex items-center gap-2 bg-[#8c52ef]/30 transition-all duration-200 text-white px-6 py-[2px] rounded-md shadow-md hover:shadow-[#9c52ef]/20 w-[100%] hover:cursor-pointer"
+            className="`flex items-center gap-2 bg-[#8c52ef]/30 transition-all duration-200 text-black  dark:text-white px-6 py-[2px] rounded-md shadow-md hover:shadow-[#9c52ef]/20 w-[100%] hover:cursor-pointer dark:teext-white"
             onClick={navigateBack}
           >
             Back
@@ -85,12 +85,12 @@ export default function Navbar({ toggleSidebar }: NavbarProps) {
 
       {/* Page Title & Theme Toggle */}
       <div className="flex items-center gap-4">
-        <h1 className="text-[12px] md:text-[20px] lg:text-[18.5px] font-semibold text-gray-900 dark:text-white tracking-wide">
+        <h1 className="hidden md:flex lg:flex text-[12px] md:text-[20px] lg:text-[18.5px] font-semibold text-gray-900 dark:text-white tracking-wide">
           {wishUser()} {user?.name} , {getCurrentTime()}
         </h1>
         <button
           onClick={toggleTheme}
-          className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+          className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors hover:cursor-pointer"
           aria-label="Toggle Theme"
         >
           {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}

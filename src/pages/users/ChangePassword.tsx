@@ -71,7 +71,7 @@ const ChangePassword = () => {
         </div>
 
         <div className="flex justify-center">
-          <Card className="w-full md:w-1/2 lg:[40%] p-6 shadow-lg ">
+          <Card className="mt-3 w-full md:w-1/2 lg:[40%] p-6 shadow-lg ">
             <form className="space-y-2" onSubmit={handleSubmit(onSubmit)}>
               {/* Current Password Input  */}
               <InputField

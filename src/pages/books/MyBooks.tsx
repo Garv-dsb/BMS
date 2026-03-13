@@ -41,7 +41,7 @@ const MyBooks = () => {
             <div className="p-8 text-center">
               <p className="text-gray-400">Loading...</p>
             </div>
-          ) : userBooks.length === 0 ? (
+          ) : userBooks?.data?.length === 0 ? (
             <div className="p-8 text-center">
               <p className="text-gray-400">No Books Found...</p>
             </div>
@@ -49,7 +49,7 @@ const MyBooks = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-white/10">
+                  <tr className="border-b border-black/20 dark:border-white/10">
                     <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm">
                       Image
                     </th>
@@ -71,7 +71,7 @@ const MyBooks = () => {
                   {userBooks?.data?.map((book: any, index: any) => (
                     <tr
                       key={index}
-                      className="border-b border-white/6 hover:bg-white/5 transition-colors"
+                      className="border-b border-black/6 dark:border-white/6 hover:bg-white/5 transition-colors"
                     >
                       <td className="p-3 sm:p-4 text-gray-900 dark:text-white font-medium">
                         <img
@@ -81,7 +81,7 @@ const MyBooks = () => {
                         />
                       </td>
                       <td className="p-3 sm:p-4 text-gray-900 dark:text-white font-medium">
-                        {book?.book?.title}
+                        {book?.book?.title?.slice(0, 20)}...
                       </td>
                       <td className="p-3 sm:p-4 text-gray-600 dark:text-gray-300 hidden sm:table-cell">
                         {book?.assignedAt.slice(0, 10)}

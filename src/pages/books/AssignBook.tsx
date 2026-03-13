@@ -123,7 +123,7 @@ const AssignBook = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold text-black dark:text-white mb-2">
             Assign Book
           </h1>
           <p className="text-gray-400">Assign a new book to the User</p>
@@ -143,15 +143,20 @@ const AssignBook = () => {
                   {...register("bookName", {
                     required: "Book Name is required",
                   })}
-                  className="w-full bg-[#111] text-gray-200 border  border-gray-600 rounded-2xl px-5 py-3 outline-none transition-all duration-300 placeholder-gray-500 focus:border-[#8c52ef]/80 focus:ring-4 focus:ring-[#8c52ef]/20 overflow-hidden"
+                  className="w-full bg-white dark:bg-[#111] text-gray-700 dark:text-gray-200 border border-gray-600 rounded-2xl px-5 py-3 outline-none transition-all duration-300 placeholder-gray-500 focus:border-[#8c52ef]/80 focus:ring-4 focus:ring-[#8c52ef]/20 overflow-hidden placeholder-gray-400 dark:placeholder-gray-500"
                 >
-                  <option value="">---Select the Book ---</option>
+                  <option
+                    value=""
+                    className="w-full bg-white dark:bg-[#111]  text-gray-700 dark:text-gray-200 border  border-gray-600 rounded-2xl px-5 py-3 outline-none "
+                  >
+                    ---Select the Book ---
+                  </option>
                   {books?.data?.map((book: any, idx: number) => {
                     return (
                       <option
                         key={idx}
                         value={book?.title}
-                        className="w-full bg-[#111] text-gray-200 border  border-gray-600 rounded-2xl px-5 py-3 outline-none"
+                        className="w-full bg-white dark:bg-[#111] text-gray-700 dark:text-gray-200  border  border-gray-600 rounded-2xl px-5 py-3 outline-none "
                       >
                         {book?.title?.slice(0, 30)}...
                       </option>
@@ -176,7 +181,7 @@ const AssignBook = () => {
                         ? `${isAvailable} available`
                         : "Not Available"
                     }
-                    className={`w-full bg-[#111] text-gray-200 border  border-gray-600 rounded-2xl px-5 py-3 outline-none transition-all duration-300 placeholder-gray-500 focus:border-[#8c52ef]/80 focus:ring-4 focus:ring-[#8c52ef]/20 overflow-hidden opacity-70 cursor-not-allowed`}
+                    className={`w-full bg-white dark:bg-[#111]  text-gray-700 dark:text-gray-200 border  border-gray-600 rounded-2xl px-5 py-3 outline-none transition-all duration-300 placeholder-gray-500 focus:border-[#8c52ef]/80 focus:ring-4 focus:ring-[#8c52ef]/20 overflow-hidden opacity-70 cursor-not-allowed placeholder-gray-400 dark:placeholder-gray-500`}
                     disabled
                   />
                   {/* Error Message  */}
@@ -197,7 +202,7 @@ const AssignBook = () => {
                     {...register("assignedTo", {
                       required: "Please select a user to assign the book",
                     })}
-                    className="w-full bg-[#111] text-gray-200 border  border-gray-600 rounded-2xl px-5 py-3 outline-none transition-all duration-300 placeholder-gray-500 focus:border-[#8c52ef]/80 focus:ring-4 focus:ring-[#8c52ef]/20 overflow-hidden"
+                    className="w-full bg-white dark:bg-[#111] text-gray-700 dark:text-gray-200 border  border-gray-600 rounded-2xl px-5 py-3 outline-none transition-all duration-300 placeholder-gray-500 focus:border-[#8c52ef]/80 focus:ring-4 focus:ring-[#8c52ef]/20 overflow-hidden placeholder-gray-400 dark:placeholder-gray-500"
                   >
                     <option value="">---Select the user ---</option>
                     {filteredUsers.map((user: any, idx: number) => {
@@ -205,7 +210,7 @@ const AssignBook = () => {
                         <option
                           key={idx}
                           value={user?.email}
-                          className="w-full bg-[#111] text-gray-200 border  border-gray-600 rounded-2xl px-5 py-3 outline-none"
+                          className="w-fullbg-white dark:bg-[#111]  text-gray-700 dark:text-gray-200 border  border-gray-600 rounded-2xl px-5 py-3 outline-none"
                         >
                           {user?.email}
                         </option>
@@ -224,7 +229,7 @@ const AssignBook = () => {
 
               <button
                 type="submit"
-                className={`flex items-center gap-2 bg-[#8c52ef]/30 transition-all duration-200 text-white px-4 py-2 rounded-md shadow-md hover:shadow-[#9c52ef]/20 w-[100%] ${!selectedBook || isAvailable === 0 ? "opacity-50 cursor-not-allowed" : "hover:cursor-pointer"} ${handlleAssignBookMututaion.isPending ? "cursor-not-allowed" : "hover:bg-[#8c52ef]/50"}`}
+                className={`flex items-center gap-2 bg-[#8c52ef]/30 transition-all duration-200 text-black font-bold dark:text-white px-4 py-2 rounded-md shadow-md hover:shadow-[#9c52ef]/20 w-[100%]  ${!selectedBook || isAvailable === 0 ? "opacity-50 cursor-not-allowed" : "hover:cursor-pointer"} ${handlleAssignBookMututaion.isPending ? "cursor-not-allowed" : "hover:bg-[#8c52ef]/50"}`}
                 disabled={!selectedBook || isAvailable === 0}
               >
                 <span className="text-sm font-medium text-center mx-auto">

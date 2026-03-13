@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 
 type Theme = "light" | "dark";
 
@@ -32,7 +38,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     } else {
       root.classList.remove("dark");
     }
-    
+
     // Save to localStorage
     localStorage.setItem("theme", theme);
   }, [theme]);

@@ -195,19 +195,19 @@ const AssignedBooks = () => {
         </div>
 
         {/*  Search and Filter  */}
-        <div className="flex w-full md:w-[50%] lg:w-[50%] gap-2">
+        <div className="flex flex-col md:flex-row lg:flex-row w-full md:w-[61%] lg:w-[60%] gap-2">
           <input
             type="text"
             placeholder="Search by book title..."
-            className="w-full sm:w-auto px-4 py-2 bg-white dark:bg-black border border-gray-300 dark:border-white/10 rounded-md text-sm text-gray-900 dark:text-gray-300 focus:outline-none transition-colors placeholder-gray-400 dark:placeholder-gray-500"
+            className="w-full md:w-1/2 lg:w-1/2 sm:w-auto px-4 py-2 bg-white dark:bg-black border border-gray-300 dark:border-white/10 rounded-md text-sm text-gray-900 dark:text-gray-600 dark:text-gray-300 focus:outline-none transition-colors placeholder-gray-400 dark:placeholder-gray-500"
             onChange={handleSearch}
           />
-          <div className="flex gap-2">
+          <div className="flex gap-2 w-full md:w-1/2 lg:w-1/2">
             {/* Returned Filter */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center w-full md:w-fit lg:w-fit">
               {isReturned ? (
                 <button
-                  className={`w-full sm:w-auto px-4 py-2 bg-white dark:bg-black border border-gray-300 dark:border-white/10 rounded-md text-sm focus:outline-none transition-colors duration-300 ease-in-out ${isReturned ? "bg-green-100 dark:bg-green-300 opacity-50 text-gray-900 dark:text-black " : "hover:bg-gray-100 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white hover:cursor-pointer text-gray-600 dark:text-gray-300"} ${isAssigned ? "opacity-50 cursor-not-allowed" : "hover:cursor-pointer"}`}
+                  className={`w-full sm:w-auto px-4 py-2 bg-white dark:bg-black border border-gray-300 dark:border-white/10 rounded-md text-sm focus:outline-none transition-colors duration-300 ease-in-out ${isReturned ? "bg-green-300 dark:bg-green-300 opacity-50 text-gray-900 dark:text-black " : "hover:bg-gray-100 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white hover:cursor-pointer text-gray-600 dark:text-white "} ${isAssigned ? "opacity-50 cursor-not-allowed" : "hover:cursor-pointer"}`}
                   onClick={() => {
                     isAssigned ? null : setIsReturned(false);
                     handleReturnedFilterToggle(false);
@@ -217,7 +217,7 @@ const AssignedBooks = () => {
                 </button>
               ) : (
                 <button
-                  className={`w-full sm:w-auto px-4 py-2 bg-white dark:bg-black border border-gray-300 dark:border-white/10 rounded-md text-sm text-gray-600 dark:text-gray-300 focus:outline-none transition-colors duration-300 ease-in-out hover:bg-gray-100 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white  ${isAssigned ? "opacity-50 cursor-not-allowed" : "hover:cursor-pointer"}`}
+                  className={`w-full sm:w-auto px-4 py-2 bg-white dark:bg-black border border-gray-300 dark:border-white/10 rounded-md text-sm text-gray-600 dark:text-white dark:text-gray-300 focus:outline-none transition-colors duration-300 ease-in-out hover:bg-gray-100 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white  ${isAssigned ? "opacity-50 cursor-not-allowed" : "hover:cursor-pointer"}`}
                   onClick={() => {
                     isAssigned ? null : setIsReturned(true);
                     handleReturnedFilterToggle(true);
@@ -228,10 +228,10 @@ const AssignedBooks = () => {
               )}
             </div>
             {/* Assigned Filter */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center w-full md:w-fit lg:w-fit">
               {isAssigned ? (
                 <button
-                  className={`w-full sm:w-auto px-4 py-2 bg-white dark:bg-black border border-gray-300 dark:border-white/10 rounded-md text-sm focus:outline-none transition-colors duration-300 ease-in-out ${isAssigned ? "bg-green-100 dark:bg-green-300 opacity-50 text-gray-900 dark:text-black " : "hover:bg-gray-100 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white hover:cursor-pointer text-gray-600 dark:text-gray-300"} ${isReturned ? "opacity-50 cursor-not-allowed" : "hover:cursor-pointer"}`}
+                  className={`w-full sm:w-auto px-4 py-2 bg-white dark:bg-black border border-gray-300 dark:border-white/10 rounded-md text-sm focus:outline-none transition-colors duration-300 ease-in-out ${isAssigned ? "bg-green-100 dark:bg-green-300 opacity-50 text-gray-900 dark:text-black " : "hover:bg-gray-100 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white hover:cursor-pointer text-gray-600 dark:text-gray-600 dark:text-gray-300"} ${isReturned ? "opacity-50 cursor-not-allowed" : "hover:cursor-pointer"}`}
                   disabled={isReturned}
                   onClick={() => {
                     setIsAssigned(false);
@@ -242,7 +242,7 @@ const AssignedBooks = () => {
                 </button>
               ) : (
                 <button
-                  className={`w-full sm:w-auto px-4 py-2 bg-white dark:bg-black border border-gray-300 dark:border-white/10 rounded-md text-sm text-gray-600 dark:text-gray-300 focus:outline-none transition-colors duration-300 ease-in-out hover:bg-gray-100 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white  ${isReturned ? "opacity-50 cursor-not-allowed" : "hover:cursor-pointer"}`}
+                  className={`w-full sm:w-auto px-4 py-2 bg-white dark:bg-black border border-gray-300 dark:border-white/10 rounded-md text-sm text-gray-600 text-gray-600 dark:text-white  focus:outline-none transition-colors duration-300 ease-in-out hover:bg-gray-100 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white  ${isReturned ? "opacity-50 cursor-not-allowed" : "hover:cursor-pointer"}`}
                   disabled={isReturned}
                   onClick={() => {
                     setIsAssigned(true);
@@ -270,29 +270,29 @@ const AssignedBooks = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-white/10">
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm hidden md:table-cell">
+                  <tr className="border-b border-black/10  dark:border-white/10">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm hidden md:table-cell">
                       Image
                     </th>
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm">
                       Id
                     </th>
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm">
                       Title
                     </th>
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm ">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm ">
                       Assigned To
                     </th>
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm hidden sm:table-cell">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm hidden sm:table-cell">
                       Status
                     </th>
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm hidden sm:table-cell">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm hidden sm:table-cell">
                       Assigned Date
                     </th>
-                    <th className="text-left p-3 sm:p-4 text-gray-300 font-semibold text-sm hidden sm:table-cell">
+                    <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm hidden sm:table-cell">
                       Return Date
                     </th>
-                    <th className="text-center p-3 sm:p-4 text-gray-300 font-semibold text-sm">
+                    <th className="text-center p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm">
                       Actions
                     </th>
                   </tr>
@@ -302,7 +302,7 @@ const AssignedBooks = () => {
                     return (
                       <tr
                         key={idx}
-                        className="border-b border-white/6 hover:bg-white/5 transition-colors"
+                        className="border-b border-black/6 dark:border-white/6 hover:bg-white/5 transition-colors"
                       >
                         <td className="p-3 sm:p-4 text-gray-900 dark:text-white font-medium hidden md:table-cell">
                           <img
@@ -320,25 +320,25 @@ const AssignedBooks = () => {
                           {book?.book?.title?.slice(0, 20)}...
                         </td>
                         {/* User email  */}
-                        <td className="p-3 sm:p-4 text-gray-600 dark:text-gray-300 ">
+                        <td className="p-3 sm:p-4 text-gray-900 dark:white dark:text-gray-300 ">
                           {book?.user?.email}
                         </td>
 
                         {/* Status of the book is returned or not  */}
                         <td
-                          className={`p-3 sm:p-4 text-gray-300 hidden sm:table-cell ${book?.status === "returned" ? "text-green-400" : "text-yellow-400"}`}
+                          className={`p-3 sm:p-4 text-gray-600 dark:text-gray-300 hidden sm:table-cell ${book?.status === "returned" ? "text-green-400 dark:text-green-500" : "text-yellow-400 dark:text-yellow-400"}`}
                         >
                           {book?.status === "returned"
                             ? "Returned"
                             : "Assigned"}
                         </td>
                         {/* User Assigned Date  */}
-                        <td className="p-3 sm:p-4 text-gray-300 hidden md:table-cell">
+                        <td className="p-3 sm:p-4 text-gray-600 dark:text-gray-300 hidden md:table-cell">
                           {book?.assignedAt?.slice(0, 10)}
                         </td>
 
                         {/* User Assigned Date  */}
-                        <td className="p-3 sm:p-4 text-gray-300 hidden md:table-cell">
+                        <td className="p-3 sm:p-4 text-gray-600 dark:text-gray-300 hidden md:table-cell">
                           {book?.returnedAt?.slice(0, 10) || "-"}
                         </td>
 
@@ -363,7 +363,7 @@ const AssignedBooks = () => {
                                 openMenu === book?.id && (
                                   <div className="absolute right-0 top-[-30px] w-48 bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-md shadow-lg z-10">
                                     <button
-                                      className={`w-full hover:cursor-pointer text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 transition-colors rounded-md flex items-center gap-2 ${
+                                      className={`w-full hover:cursor-pointer text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-600 dark:text-gray-300 transition-colors rounded-md flex items-center gap-2 ${
                                         mutatingUserId === book?.book?.id
                                           ? "opacity-50 cursor-not-allowed"
                                           : "hover:bg-gray-100 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white"

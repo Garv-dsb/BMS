@@ -110,7 +110,7 @@ const EditProfile = () => {
         </div>
 
         {/* Form */}
-        <Card className="w-[50%] mx-auto border border-gray-200 dark:border-white/10">
+        <Card className="w-full md:w-[50%] lg:w-[50%] mx-auto border border-gray-200 dark:border-white/10">
           <div className="p-6 space-y-4">
             {/* form inputs  */}
             {isLoading ? (
@@ -149,7 +149,7 @@ const EditProfile = () => {
                   <div className="">
                     <button
                       type="submit"
-                      className={`flex items-center justify-center text-center bg-[#8c52ef]/30 transition-all duration-200 text-white px-4 py-[5px] rounded-md shadow-md hover:shadow-[#9c52ef]/20 w-[100%]  ${handleProfileMututate.isPending ? "cursor-not-allowed bg-[#8c52ef]/10 opacity-50" : "hover:cursor-pointer"}`}
+                      className={`flex items-center justify-center text-center bg-[#8c52ef]/30 transition-all duration-200 text-black dark:text-white px-4 py-[5px] rounded-md shadow-md hover:shadow-[#9c52ef]/20 w-[100%]  ${handleProfileMututate.isPending ? "cursor-not-allowed bg-[#8c52ef]/10 opacity-50" : "hover:cursor-pointer"}`}
                     >
                       {handleProfileMututate.isPending ? "Saving..." : "Save"}
                     </button>

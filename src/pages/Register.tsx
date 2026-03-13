@@ -94,25 +94,44 @@ export default function Register() {
   };
 
   return (
-    <div className="mx-auto my-auto h-screen p-4 md:p-3 lg:p-2 flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1533478684236-61e1192879e8?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center">
-      <div className="w-full md:w-[60%] lg:w-1/2 bg-white/90 dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 p-6 rounded-2xl shadow-xl dark:shadow-md transition-colors duration-200">
-        {/* Title  */}
-        <div className="text-center border-b border-gray-200 dark:border-white/10 mb-6 pb-4">
-          <h2 className="font-[500] text-gray-900 dark:text-white">Book Management System</h2>
+    <div className="w-full h-full p-2 ">
+      <div className="flex w-full h-full mx-auto backdrop-blur-md ">
+        {/* Image  */}
+        <div className="hidden md:flex lg:flex md:w-[50%] lg:w-[50%] relative rounded-tl-xl rounded-bl-xl">
+          {/* Image  */}
+          <img
+            src="https://images.unsplash.com/photo-1748289973871-9e699da2494c?q=80&w=435&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Book Image"
+            className="bg-cover bg-center h-full w-full z-[-1] opacity-95 rounded-tl-xl rounded-bl-xl inset-0 absolute"
+          />
+
+          {/* Black overlay */}
+          <div className="absolute inset-0 bg-black opacity-30"></div>
+
+          {/* Management system  */}
+          <div className="w-full h-full flex flex-col absolute z-1 p-25 flex justify-center items-center">
+            <h3 className="text-4xl text-white font-[Tangerine]">
+              Book Management System
+            </h3>
+            <p className="text-gray-100 text-sm  text-center font-[poppins]">
+              "I have always imagined that Paradise will be a kind of a
+              Library."
+            </p>
+          </div>
         </div>
 
-        {/* Heading  */}
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
-          Create User Account
-        </h2>
-        <p className="text-gray-600 dark:text-gray-400 mb-4 text-xs">
-          Join us by creating a new account
-        </p>
+        <div className="flex flex-col justify-center items-center h-full p-6 md:p-10 md:py-10 lg:p-30  w-full md:w-[50%] lg:w-[50%]  md:rounded-tr-xl md:rounded-br-xl lg:rounded-tr-xl lg:rounded-br-xl relative dark:bg-black/30">
+          {/* Heading  */}
+          <h2 className="text-xl lg:text-3xl font-bold text-[#BA97F5] mb-2">
+            Create User Account
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 mb-4 text-xs">
+            Join us by creating a new account
+          </p>
 
-        {/* Form  */}
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4  ">
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="md:w-1/2 lg:w-1/2">
+          {/* Form  */}
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-2 w-full">
+            <div className="flex flex-col ">
               <InputField
                 label="Full Name"
                 name="name"
@@ -120,7 +139,7 @@ export default function Register() {
                 placeholder="John Doe"
                 register={register}
                 errors={errors.name}
-                className="text-sm py-2"
+                className="text-sm "
               />
 
               <InputField
@@ -130,11 +149,9 @@ export default function Register() {
                 placeholder="you@example.com"
                 register={register}
                 errors={errors.email}
-                className="text-sm py-2"
+                className="text-sm "
               />
-            </div>
 
-            <div className="md:w-1/2 lg:w-1/2">
               <InputField
                 label="Password"
                 name="password"
@@ -142,7 +159,7 @@ export default function Register() {
                 placeholder="Enter password"
                 register={register}
                 errors={errors.password}
-                className="text-sm py-2"
+                className="text-sm "
               />
 
               <InputField
@@ -152,22 +169,25 @@ export default function Register() {
                 placeholder="Re-enter password"
                 register={register}
                 errors={errors.confirmPassword}
-                className="text-sm py-2"
+                className="text-sm "
               />
             </div>
-          </div>
-          <Button text="Create Account" loading={registerMutation.isPending} />
-        </form>
+            <Button
+              text="Create Account"
+              loading={registerMutation.isPending}
+            />
+          </form>
 
-        {/* Want to Login  */}
-        <div className="text-sm text-gray-700 dark:text-gray-400 mt-4 text-center">
-          Already have an account?{" "}
-          <Link
-            to="/login"
-            className="text-[#8c52ef] hover:underline font-medium"
-          >
-            Login
-          </Link>
+          {/* Want to Login  */}
+          <div className="text-sm text-gray-700 dark:text-gray-400 mt-4 text-center">
+            Already have an account?{" "}
+            <Link
+              to="/login"
+              className="text-[#8c52ef] hover:underline font-medium"
+            >
+              Login
+            </Link>
+          </div>
         </div>
       </div>
     </div>

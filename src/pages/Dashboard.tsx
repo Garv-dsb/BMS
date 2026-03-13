@@ -116,8 +116,12 @@ const Dashboard = () => {
 
   return (
     <div className="">
-      <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Dashboard</h1>
-      <p className="text-gray-600 dark:text-gray-400">Welcome to the Dashboard</p>
+      <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+        Dashboard
+      </h1>
+      <p className="text-gray-600 dark:text-gray-400">
+        Welcome to the Dashboard
+      </p>
 
       <div className="flex flex-wrap gap-5 mt-3">
         {/*  Disaplay the Current States  */}
@@ -126,85 +130,87 @@ const Dashboard = () => {
             <p className="text-gray-400">Loading...</p>
           </div>
         ) : userData.role === "admin" ? (
-          <div className="p-4 w-full flex flex-wrap gap-5 md:gap-7 lg:gap-5">
+          <div className="flex flex-col gap-3 w-full">
             {/* // Total Users currently in the system  */}
-            <Card className="border border-white/10 p-6 w-full md:w-[47%] lg:w-[23%]">
-              <h2 className="text-xl font-semibold text-white mb-4">
-                Total Users
-              </h2>
-              <div className="flex items-center">
-                <p className="text-3xl font-bold text-[#8c52ef] dark:text-[#AAC4F5]">
-                  {users?.length}
-                </p>
+            <div className="p-4 w-full flex flex-wrap gap-5 md:gap-7 lg:gap-5">
+              <Card className="border border-white/10 p-6 w-full md:w-[47%] lg:w-[23%]">
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                  Total Users
+                </h2>
+                <div className="flex items-center">
+                  <p className="text-3xl font-bold text-[#8c52ef] dark:text-[#AAC4F5]">
+                    {users?.length}
+                  </p>
 
-                {/* Go to Users Management */}
-                <Link to="/users" className="ml-auto">
-                  <Card className="bg-[#AAC4F5]/20 rounded-md">
-                    <MoveUpRight size={16} />
-                  </Card>
-                </Link>
-              </div>
-            </Card>
+                  {/* Go to Users Management */}
+                  <Link to="/users" className="ml-auto">
+                    <Card className="bg-[#AAC4F5]/20 rounded-md">
+                      <MoveUpRight size={16} />
+                    </Card>
+                  </Link>
+                </div>
+              </Card>
 
-            {/* // Total Banned Users currently in the system */}
-            <Card className="border border-white/10 p-6 w-full md:w-[47%] lg:w-[23%]">
-              <h2 className="text-xl font-semibold text-white mb-4">
-                Total Banned Users
-              </h2>
-              <div className="flex items-center">
-                <p className="text-3xl font-bold text-[#8c52ef] dark:text-[#AAC4F5]">
-                  {bannedUsersCount}
-                </p>
+              {/* // Total Banned Users currently in the system */}
+              <Card className="border border-white/10 p-6 w-full md:w-[47%] lg:w-[23%]">
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                  Total Banned Users
+                </h2>
+                <div className="flex items-center">
+                  <p className="text-3xl font-bold text-[#8c52ef] dark:text-[#AAC4F5]">
+                    {bannedUsersCount}
+                  </p>
 
-                {/* Go to Users Management */}
-                <Link to="/users" className="ml-auto">
-                  <Card className="bg-[#AAC4F5]/20 rounded-md">
-                    <MoveUpRight size={16} />
-                  </Card>
-                </Link>
-              </div>
-            </Card>
+                  {/* Go to Users Management */}
+                  <Link to="/users" className="ml-auto">
+                    <Card className="bg-[#AAC4F5]/20 rounded-md">
+                      <MoveUpRight size={16} />
+                    </Card>
+                  </Link>
+                </div>
+              </Card>
 
-            {/* Get the Total Available Books in the system  */}
-            <Card className="border border-white/10 p-6 w-full md:w-[47%] lg:w-[23%]">
-              <h2 className="text-xl font-semibold text-white mb-4">
-                Available Books
-              </h2>
-              <div className="flex items-center">
-                <p className="text-3xl font-bold text-[#8c52ef] dark:text-[#AAC4F5]">
-                  {books?.data?.length}
-                </p>
-                {/* Go to Books Management */}
-                <Link to="/books" className="ml-auto">
-                  <Card className="bg-[#AAC4F5]/20 rounded-md">
-                    <MoveUpRight size={16} />
-                  </Card>
-                </Link>
-              </div>
-            </Card>
+              {/* Get the Total Available Books in the system  */}
+              <Card className="border border-white/10 p-6 w-full md:w-[47%] lg:w-[23%]">
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                  Available Books
+                </h2>
+                <div className="flex items-center">
+                  <p className="text-3xl font-bold text-[#8c52ef] dark:text-[#AAC4F5]">
+                    {books?.data?.length}
+                  </p>
+                  {/* Go to Books Management */}
+                  <Link to="/books" className="ml-auto">
+                    <Card className="bg-[#AAC4F5]/20 rounded-md">
+                      <MoveUpRight size={16} />
+                    </Card>
+                  </Link>
+                </div>
+              </Card>
 
-            {/* Total Returned Books */}
-            <Card className="border border-white/10 p-6 w-full md:w-[47%] lg:w-[23%]">
-              <h2 className="text-xl font-semibold text-white mb-4">
-                Returned Books
-              </h2>
-              <div className="flex items-center">
-                <p className="text-3xl font-bold text-[#8c52ef] dark:text-[#AAC4F5]">
-                  {totalReturned}
-                </p>
-                {/* Go to Books Management */}
-                <Link to="/assignbook" className="ml-auto">
-                  <Card className="bg-[#AAC4F5]/20 rounded-md">
-                    <MoveUpRight size={16} />
-                  </Card>
-                </Link>
-              </div>
-            </Card>
+              {/* Total Returned Books */}
+              <Card className="border border-white/10 p-6 w-full md:w-[47%] lg:w-[23%]">
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                  Returned Books
+                </h2>
+                <div className="flex items-center">
+                  <p className="text-3xl font-bold text-[#8c52ef] dark:text-[#AAC4F5]">
+                    {totalReturned}
+                  </p>
+                  {/* Go to Books Management */}
+                  <Link to="/assignbook" className="ml-auto">
+                    <Card className="bg-[#AAC4F5]/20 rounded-md">
+                      <MoveUpRight size={16} />
+                    </Card>
+                  </Link>
+                </div>
+              </Card>
+            </div>
           </div>
         ) : (
           <div className="p-4 w-full flex flex-wrap gap-5 md:gap-7 lg:gap-5">
             <Card className="border border-white/10 p-6 w-full md:w-[47%] lg:w-[23%]">
-              <h2 className="text-xl font-semibold text-white mb-4">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
                 My Total Books
               </h2>
               <div className="flex items-center">
@@ -221,7 +227,7 @@ const Dashboard = () => {
             </Card>
 
             <Card className="border border-white/10 p-6 w-full md:w-[47%] lg:w-[23%]">
-              <h2 className="text-xl font-semibold text-white mb-4">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
                 Active Books
               </h2>
               <div className="flex items-center">

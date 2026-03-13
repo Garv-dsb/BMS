@@ -5,6 +5,7 @@ import Card from "../../Components/Card";
 import Pagination from "../../Components/Pagination";
 import { Edit2, Ellipsis, Eye, Trash2, UserPlus } from "lucide-react";
 import { Link } from "react-router-dom";
+import Loading from "../../Components/Loading";
 
 interface User {
   assignedBooksCount: number;
@@ -224,20 +225,20 @@ const Users = () => {
         </div>
 
         {/* Books Table */}
-        <Card className="border border-gray-200 dark:border-white/10">
+        <div className="">
           {isLoading ? (
-            <div className="p-8 text-center">
-              <p className="text-gray-400">Loading...</p>
+            <div className="flex justify-center items-center w-full h-full">
+              <Loading />
             </div>
           ) : users.length === 0 ? (
             <div className="p-8 text-center">
               <p className="text-gray-400">No Users Found...</p>
             </div>
           ) : (
-            <div className="overflow-x-auto">
+            <Card className="overflow-x-auto border border-gray-200 dark:border-white/10">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-white/10">
+                  <tr className="border-b border-black/10 dark:border-white/10">
                     <th className="text-left p-3 sm:p-4 text-gray-600 dark:text-gray-300 font-semibold text-sm">
                       Image
                     </th>
@@ -381,9 +382,9 @@ const Users = () => {
                 totalPages={totalPages}
                 onPageChange={setCurrentPage}
               />
-            </div>
+            </Card>
           )}
-        </Card>
+        </div>
 
         {/* Delete Confirmation Modal */}
         <div

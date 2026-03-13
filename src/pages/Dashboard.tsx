@@ -2,6 +2,7 @@ import Card from "../Components/Card";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { MoveUpRight } from "lucide-react";
+import Loading from "../Components/Loading";
 
 const Dashboard = () => {
   // get the userData
@@ -126,8 +127,8 @@ const Dashboard = () => {
       <div className="flex flex-wrap gap-5 mt-3">
         {/*  Disaplay the Current States  */}
         {isLoading ? (
-          <div className="p-8 text-center">
-            <p className="text-gray-400">Loading...</p>
+          <div className="flex justify-center items-center w-full h-full">
+            <Loading />
           </div>
         ) : userData.role === "admin" ? (
           <div className="flex flex-col gap-3 w-full">

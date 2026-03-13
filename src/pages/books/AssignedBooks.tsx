@@ -5,6 +5,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Pagination from "../../Components/Pagination";
+import Loading from "../../Components/Loading";
 
 const AssignedBooks = () => {
   const [openMenu, setOpenMenu] = useState<number | null>(null);
@@ -257,17 +258,17 @@ const AssignedBooks = () => {
         </div>
 
         {/* Books Table */}
-        <Card className="border border-gray-200 dark:border-white/10">
+        <div className="">
           {isLoading ? (
-            <div className="p-8 text-center">
-              <p className="text-gray-400">Loading...</p>
+            <div className="flex justify-center items-center w-full h-full">
+              <Loading />
             </div>
           ) : paginatedAssignedBooks.length === 0 ? (
             <div className="p-8 text-center">
               <p className="text-gray-400">No assigned books found.</p>
             </div>
           ) : (
-            <div className="overflow-x-auto">
+            <Card className="overflow-x-auto border border-gray-200 dark:border-white/10">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-black/10  dark:border-white/10">
@@ -399,9 +400,9 @@ const AssignedBooks = () => {
                 totalPages={totalPages}
                 onPageChange={setCurrentPage}
               />
-            </div>
+            </Card>
           )}
-        </Card>
+        </div>
       </div>
     </div>
   );

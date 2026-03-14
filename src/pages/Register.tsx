@@ -106,7 +106,7 @@ export default function Register() {
           />
 
           {/* Black overlay */}
-          <div className="absolute inset-0 bg-black opacity-30"></div>
+          <div className="absolute inset-0 bg-black rounded-tl-xl rounded-bl-xl opacity-30"></div>
 
           {/* Management system  */}
           <div className="w-full h-full flex flex-col absolute z-1 p-25 flex justify-center items-center">

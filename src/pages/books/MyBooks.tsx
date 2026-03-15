@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import Card from "../../Components/Card";
+import Loading from "../../Components/Loading";
 
 const MyBooks = () => {
   // Fetch Booka data using React Query
@@ -36,17 +37,17 @@ const MyBooks = () => {
         </div>
 
         {/* Books Table */}
-        <Card className="border border-gray-200 dark:border-white/10">
+        <div className="">
           {isLoading ? (
-            <div className="p-8 text-center">
-              <p className="text-gray-400">Loading...</p>
+            <div className="flex justify-center items-center w-full h-full">
+              <Loading />
             </div>
           ) : userBooks?.data?.length === 0 ? (
             <div className="p-8 text-center">
               <p className="text-gray-400">No Books Found...</p>
             </div>
           ) : (
-            <div className="overflow-x-auto">
+            <Card className="border border-gray-200 dark:border-white/10 overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-black/20 dark:border-white/10">
@@ -100,9 +101,9 @@ const MyBooks = () => {
                   ))}
                 </tbody>
               </table>
-            </div>
+            </Card>
           )}
-        </Card>
+        </div>
       </div>
     </div>
   );

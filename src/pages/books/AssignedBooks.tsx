@@ -15,7 +15,7 @@ const AssignedBooks = () => {
   const [isAssigned, setIsAssigned] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const itemsPerPage = 7;
   const [totalItems, setTotalItems] = useState(0);
 
   // Fetch Booka data using React Query
@@ -260,7 +260,7 @@ const AssignedBooks = () => {
         {/* Books Table */}
         <div className="">
           {isLoading ? (
-            <div className="flex justify-center items-center w-full h-full">
+            <div className="flex justify-center items-center overflow-y-hidden">
               <Loading />
             </div>
           ) : paginatedAssignedBooks.length === 0 ? (

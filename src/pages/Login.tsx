@@ -97,7 +97,7 @@ export default function Login() {
 
           {/* Management system  */}
           <div className="w-full h-full flex flex-col absolute z-1 p-25 flex justify-center items-center">
-            <h3 className="text-4xl text-white font-[Tangerine]">
+            <h3 className="text-2xl lg:text-3xl text-white font-[Poppins]">
               Book Management System
             </h3>
             <p className="text-gray-100 text-sm  text-center font-[poppins]">

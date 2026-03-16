@@ -138,7 +138,7 @@ const Books = () => {
         {/* Books Table */}
         <div className="">
           {isLoading ? (
-            <div className="flex justify-center items-center w-full h-full">
+            <div className="flex justify-center items-center overflow-y-hidden">
               <Loading />
             </div>
           ) : paginatedbooks.length === 0 ? (

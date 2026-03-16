@@ -39,7 +39,7 @@ const MyBooks = () => {
         {/* Books Table */}
         <div className="">
           {isLoading ? (
-            <div className="flex justify-center items-center w-full h-full">
+            <div className="flex justify-center items-center overflow-y-hidden">
               <Loading />
             </div>
           ) : userBooks?.data?.length === 0 ? (
